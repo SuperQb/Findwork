@@ -21,7 +21,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-   //test
+   //tes
     private EditText mPhoneView;
     private EditText mPasswordView;
 
