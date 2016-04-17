@@ -18,7 +18,7 @@ import com.qb.findwork.R;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity {
-    
+
     private EditText mPhoneView;
     private EditText mPasswordView;
 
