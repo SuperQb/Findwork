@@ -21,7 +21,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-    // UI references.
+   
     private EditText mPhoneView;
     private EditText mPasswordView;
 
