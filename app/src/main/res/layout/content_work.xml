@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.qb.findwork.activity.WorkActivity"
+    tools:showIn="@layout/activity_work">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/item_selector"
+        android:id="@+id/Relat_name">
+
+        <ImageView
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:src="@drawable/ic_account_circle_black_24dp"
+            android:layout_marginLeft="15dp"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="曲博"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="53dp"
+            android:textSize="20sp"
+            android:id="@+id/per_name"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line_color"
+            android:layout_marginLeft="45dp"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/view" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/item_selector"
+        android:id="@+id/Relat_sex">
+
+        <ImageView
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:src="@drawable/ic_wc_black_24dp"
+            android:layout_marginLeft="15dp"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2000"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="53dp"
+            android:textSize="20sp"
+            android:id="@+id/work_money"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/"
+            android:textSize="20sp"
+            android:layout_alignTop="@+id/work_money"
+            android:layout_toRightOf="@+id/work_money"
+            android:layout_toEndOf="@+id/work_money"
+            android:id="@+id/textView2" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="月"
+            android:textSize="20sp"
+            android:id="@+id/work_money_time"
+            android:layout_alignTop="@+id/textView2"
+            android:layout_toRightOf="@+id/textView2"
+            android:layout_toEndOf="@+id/textView2" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line_color"
+            android:layout_marginLeft="45dp"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/item_selector"
+            android:id="@+id/rl_work_sex">
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/ic_account_circle_black_24dp"
+                android:layout_marginLeft="15dp"
+                android:layout_centerVertical="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="性别不限"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="53dp"
+                android:textSize="20sp"
+                android:id="@+id/tv_work_sex"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_color"
+                android:layout_marginLeft="45dp"
+                android:layout_alignParentBottom="true"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/item_selector"
+            android:id="@+id/rl_work_location">
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/ic_account_circle_black_24dp"
+                android:layout_marginLeft="15dp"
+                android:layout_centerVertical="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="广州"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="53dp"
+                android:textSize="20sp"
+                android:id="@+id/tv_work_location"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_color"
+                android:layout_marginLeft="45dp"
+                android:layout_alignParentBottom="true"
+                />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/item_selector"
+            android:id="@+id/rl_work_more"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="介绍："
+                android:textSize="15sp"
+                android:id="@+id/tv_work_more_title_introduce"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="总体来说， NestedScroll 初看起来有些让人费解，但是真的理解以后，就发现这种设计的优秀之处。把滑动整体封装起来，通过 Helper 来实现 Child 和 Parent 之间的连接和交互。通过接口来回调，实现了 Child 和 Parent 的逻辑独立。"
+                android:textSize="20sp"
+                android:id="@+id/tv_work_more_introduce"
+                android:layout_alignTop="@+id/tv_work_more_title_introduce"
+                android:layout_toRightOf="@+id/tv_work_more_title_introduce"
+                android:layout_toEndOf="@+id/tv_work_more_title_introduce" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_color"
+                android:layout_marginLeft="45dp"
+                android:layout_alignParentBottom="true"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/item_selector"
+            android:id="@+id/rl_work_content"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="内容："
+                android:textSize="15sp"
+                android:id="@+id/tv_work_more_title_contente"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="总体来说， NestedScroll 初看起来有些让人费解，但是真的理解以后，就发现这种设计的优秀之处。把滑动整体封装起来，通过 Helper 来实现 Child 和 Parent 之间的连接和交互。通过接口来回调，实现了 Child 和 Parent 的逻辑独立。"
+                android:textSize="20sp"
+                android:id="@+id/tv_work_more_content"
+                android:layout_alignTop="@+id/tv_work_more_title_contente"
+                android:layout_toRightOf="@+id/tv_work_more_title_contente"
+                android:layout_toEndOf="@+id/tv_work_more_title_contente" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_color"
+                android:layout_marginLeft="45dp"
+                android:layout_alignParentBottom="true"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/item_selector"
+            android:id="@+id/rl_work_required"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="要求："
+                android:textSize="15sp"
+                android:id="@+id/tv_work_more_title_required"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="总体来说， NestedScroll 初看起来有些让人费解，但是真的理解以后，就发现这种设计的优秀之处。把滑动整体封装起来，通过 Helper 来实现 Child 和 Parent 之间的连接和交互。通过接口来回调，实现了 Child 和 Parent 的逻辑独立。"
+                android:textSize="20sp"
+                android:id="@+id/tv_work_more_required"
+                android:layout_alignTop="@+id/tv_work_more_title_required"
+                android:layout_toRightOf="@+id/tv_work_more_title_required"
+                android:layout_toEndOf="@+id/tv_work_more_title_required" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_color"
+                android:layout_marginLeft="45dp"
+                android:layout_alignParentBottom="true"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

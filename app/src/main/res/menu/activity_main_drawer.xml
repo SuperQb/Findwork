@@ -3,15 +3,19 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_main"
             android:icon="@drawable/ic_menu_camera"
-            android:title="找工作" />
+            android:title="全部" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_work"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="工作" />
+        <item
+            android:id="@+id/nav_man"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="找员工" />
+            android:title="人才" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_like"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="收藏" />
         <!--<item-->
@@ -23,11 +27,11 @@
     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_setting"
                 android:icon="@drawable/ic_menu_share"
                 android:title="设置" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_about"
                 android:icon="@drawable/ic_menu_send"
                 android:title="关于" />
         </menu>

@@ -2,7 +2,6 @@ package com.qb.findwork.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 
@@ -18,12 +17,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.qb.findwork.R;
-import com.qb.findwork.fragment.BlankFragment;
-import com.qb.findwork.fragment.BlankFragmenttwo;
+import com.qb.findwork.fragment.MainFragment;
+import com.qb.findwork.fragment.ManFragment;
+import com.qb.findwork.fragment.WorkFragment;
 
 
 public class MainActivity extends AppCompatActivity
@@ -76,6 +75,11 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        transaction = fragmentManager.beginTransaction();
+        MainFragment fragment = new MainFragment();
+        transaction.add(R.id.container, fragment);
+        transaction.commit();
+
 
     }
 
@@ -121,29 +125,45 @@ public class MainActivity extends AppCompatActivity
         transaction = fragmentManager.beginTransaction();
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_main) {
             // Handle the camera action
             Toast.makeText(this, "点击成功", Toast.LENGTH_SHORT).show();
-            BlankFragment fragment = new BlankFragment();
+            MainFragment fragmentMain = new MainFragment();
             //transaction.add(fragment);
-            transaction.replace(R.id.container, fragment);
+            transaction.replace(R.id.container, fragmentMain);
             transaction.commit();
-        } else if (id == R.id.nav_gallery) {
-            BlankFragmenttwo fragment2 = new BlankFragmenttwo();
+        } else if (id == R.id.nav_work) {
+            WorkFragment fragmentWork = new WorkFragment();
             //transaction.add(fragment);
             //transaction = fragmentManager.beginTransaction();
-            transaction.replace(R.id.container, fragment2);
+            transaction.replace(R.id.container, fragmentWork);
             transaction.commit();
 
-        } else if (id == R.id.nav_slideshow) {
-            Intent intent=new Intent(MainActivity.this,LoginActivity.class);
-            startActivity(intent);
+        } else if (id == R.id.nav_man) {
+//            Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+//            startActivity(intent);
+            ManFragment fragmentMan = new ManFragment();
+            //transaction.add(fragment);
+            //transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.container, fragmentMan);
+            transaction.commit();
 
 
-        } else if (id == R.id.nav_send) {
-            Intent intent=new Intent(MainActivity.this,PersonActivity.class);
-            startActivity(intent);
+        } else if (id == R.id.nav_like) {
+            //跳转收藏页面
+//            Intent intent=new Intent(MainActivity.this,PersonActivity.class);
+//            startActivity(intent);
 
+        } else if (id == R.id.nav_setting) {
+            //设置页面
+//            Intent intent=new Intent(MainActivity.this,PersonActivity.class);
+//            startActivity(intent);
+
+    }
+        else if (id == R.id.nav_about) {
+            //关于页面
+//            Intent intent=new Intent(MainActivity.this,PersonActivity.class);
+//            startActivity(intent);
 
         }
 

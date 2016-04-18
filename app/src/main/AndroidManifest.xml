@@ -27,7 +27,11 @@
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".activity.PersonActivity"></activity>
+        <activity android:name=".activity.PersonActivity" />
+        <activity
+            android:name=".activity.WorkActivity"
+            android:label="@string/title_activity_work"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
