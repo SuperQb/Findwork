@@ -14,7 +14,6 @@ import com.qb.findwork.R;
 
 public class PersonActivity extends AppCompatActivity implements View.OnClickListener {
 
-
     private RelativeLayout Relat_name, Relat_sex, Relat_age, Relat_phone;
     private ImageView per_photo;
     private TextView per_name, per_sex, per_age, per_phone;
@@ -39,22 +38,24 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
         per_phone = (TextView) findViewById(R.id.per_phone);
         back = (ImageView) findViewById(R.id.per_back);
         Relat_name.setOnClickListener(this);
+        Relat_phone.setOnClickListener(this);
         back.setOnClickListener(this);
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.login_back:
+            case R.id.per_back:
                 finish();
                 break;
             case R.id.Relat_name:
-                Intent intent = new Intent(PersonActivity.this, NameActivity.class);
-                startActivity(intent);
+                Intent intentName = new Intent(PersonActivity.this, NameActivity.class);
+                startActivity(intentName);
                 overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
                 break;
-            case R.id.sign_in_button:
-
+            case R.id.Relat_phone:
+                Intent intentPhone = new Intent(PersonActivity.this, PhoneActivity.class);
+                startActivity(intentPhone);
+                overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
                 break;
             default:
                 break;

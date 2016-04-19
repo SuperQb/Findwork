@@ -126,47 +126,36 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_main) {
-            // Handle the camera action
-            Toast.makeText(this, "点击成功", Toast.LENGTH_SHORT).show();
+
             MainFragment fragmentMain = new MainFragment();
-            //transaction.add(fragment);
             transaction.replace(R.id.container, fragmentMain);
             transaction.commit();
         } else if (id == R.id.nav_work) {
             WorkFragment fragmentWork = new WorkFragment();
-            //transaction.add(fragment);
-            //transaction = fragmentManager.beginTransaction();
             transaction.replace(R.id.container, fragmentWork);
             transaction.commit();
 
         } else if (id == R.id.nav_man) {
-//            Intent intent=new Intent(MainActivity.this,LoginActivity.class);
-//            startActivity(intent);
             ManFragment fragmentMan = new ManFragment();
-            //transaction.add(fragment);
-            //transaction = fragmentManager.beginTransaction();
             transaction.replace(R.id.container, fragmentMan);
             transaction.commit();
 
 
         } else if (id == R.id.nav_like) {
-            //跳转收藏页面
-//            Intent intent=new Intent(MainActivity.this,PersonActivity.class);
-//            startActivity(intent);
+
 
         } else if (id == R.id.nav_setting) {
-            //设置页面
-//            Intent intent=new Intent(MainActivity.this,PersonActivity.class);
-//            startActivity(intent);
+
+            Intent intent=new Intent(MainActivity.this,SettingsActivity.class);
+            startActivity(intent);
 
     }
         else if (id == R.id.nav_about) {
             //关于页面
-          Intent intent=new Intent(MainActivity.this,LoginActivity.class);
-           startActivity(intent);
+            Intent intent=new Intent(MainActivity.this,AboutActivity.class);
+            startActivity(intent);
 
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

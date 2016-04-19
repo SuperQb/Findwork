@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.qb.findwork.activity.NameActivity"
+    tools:context="com.qb.findwork.activity.PhoneActivity"
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,11 +14,11 @@
             android:layout_height="40dp"
             android:src="@drawable/ic_chevron_left_white_24dp"
             android:layout_centerVertical="true"
-            android:id="@+id/name_back" />
+            android:id="@+id/phone_back" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="?attr/actionBarSize"
-            android:text="昵称"
+            android:text="电话"
             android:gravity="center"
             android:textColor="#ffffff"
             android:textSize="25sp"
@@ -39,9 +39,6 @@
             />
     </RelativeLayout>
 
-
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -53,41 +50,39 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginLeft="30dp"
-            android:background="@color/line_color" />
+            android:background="@color/line_color"
+            android:id="@+id/view2" />
 
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
-            android:src="@drawable/ic_account_circle_black_24dp"
-            android:id="@+id/activity_per_name_image"/>
+            android:src="@drawable/ic_phone_iphone_black_24dp"
+            android:id="@+id/activity_per_phone_image"/>
 
 
         <EditText
-            android:id="@+id/activity_per_name"
+            android:id="@+id/activity_per_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:background="#ffffff"
-            android:hint="昵称"
+            android:hint="电话"
+            android:inputType="number"
             android:maxLines="1"
             android:singleLine="true"
             android:textSize="25sp"
-            android:layout_toRightOf="@+id/activity_per_name_image"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/activity_per_phone_image"
             android:layout_marginLeft="10dp"
-            />
+             />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginLeft="30dp"
             android:background="@color/line_color"
-           android:layout_alignParentBottom="true"
-          />
+            android:layout_alignParentBottom="true"
+            />
     </RelativeLayout>
-
-
-
-
 </LinearLayout>
