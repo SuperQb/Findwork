@@ -15,10 +15,10 @@ import com.qb.findwork.R;
 public class PersonActivity extends AppCompatActivity implements View.OnClickListener {
 
 
-    RelativeLayout Relat_name,Relat_sex,Relat_age,Relat_phone;
-    ImageView per_photo;
-    TextView per_name,per_sex,per_age,per_phone;
-
+    private RelativeLayout Relat_name, Relat_sex, Relat_age, Relat_phone;
+    private ImageView per_photo;
+    private TextView per_name, per_sex, per_age, per_phone;
+    private ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,21 +26,39 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_person);
         init();
     }
-    public void init (){
-        Relat_name= (RelativeLayout) findViewById(R.id.Relat_name);
-        Relat_sex= (RelativeLayout) findViewById(R.id.Relat_sex);
-        Relat_age= (RelativeLayout) findViewById(R.id.Relat_age);
-        Relat_phone= (RelativeLayout) findViewById(R.id.Relat_phone);
-        per_photo= (ImageView) findViewById(R.id.per_photo);
-        per_name= (TextView) findViewById(R.id.per_name);
-        per_sex= (TextView) findViewById(R.id.per_sex);
-        per_age= (TextView) findViewById(R.id.per_age);
-        per_phone= (TextView) findViewById(R.id.per_phone);
 
+    public void init() {
+        Relat_name = (RelativeLayout) findViewById(R.id.Relat_name);
+        Relat_sex = (RelativeLayout) findViewById(R.id.Relat_sex);
+        Relat_age = (RelativeLayout) findViewById(R.id.Relat_age);
+        Relat_phone = (RelativeLayout) findViewById(R.id.Relat_phone);
+        per_photo = (ImageView) findViewById(R.id.per_photo);
+        per_name = (TextView) findViewById(R.id.per_name);
+        per_sex = (TextView) findViewById(R.id.per_sex);
+        per_age = (TextView) findViewById(R.id.per_age);
+        per_phone = (TextView) findViewById(R.id.per_phone);
+        back = (ImageView) findViewById(R.id.per_back);
+        Relat_name.setOnClickListener(this);
+        back.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.login_back:
+                finish();
+                break;
+            case R.id.Relat_name:
+                Intent intent = new Intent(PersonActivity.this, NameActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
+                break;
+            case R.id.sign_in_button:
 
+                break;
+            default:
+                break;
+
+        }
     }
 }

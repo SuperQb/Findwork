@@ -162,8 +162,8 @@ public class MainActivity extends AppCompatActivity
     }
         else if (id == R.id.nav_about) {
             //关于页面
-//            Intent intent=new Intent(MainActivity.this,PersonActivity.class);
-//            startActivity(intent);
+          Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+           startActivity(intent);
 
         }
 

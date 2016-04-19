@@ -26,12 +26,18 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.LoginActivity"
-            android:label="@string/title_activity_login" />
-        <activity android:name=".activity.PersonActivity" />
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".activity.PersonActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".activity.WorkActivity"
             android:label="@string/title_activity_work"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.NameActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".activity.RegisterActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
