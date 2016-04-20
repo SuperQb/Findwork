@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/qb/findwork/view/WheelView.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_chevron_left_white_24dp.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_man_canle.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_man_ok.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_women_canle.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_women_ok.png" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

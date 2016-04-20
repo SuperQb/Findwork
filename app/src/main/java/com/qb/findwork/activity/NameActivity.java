@@ -22,6 +22,7 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
     }
     public void init(){
 
+
         name_back= (ImageView) findViewById(R.id.name_back);
         name_back.setOnClickListener(this);
     }
