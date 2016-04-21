@@ -13,7 +13,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.SplashActivity">
+        <activity android:name=".activity.SplashActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -53,7 +55,12 @@
         <activity
             android:name=".activity.SexActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.AgeActivity"></activity>
+        <activity android:name=".activity.AgeActivity" />
+        <activity
+            android:name=".activity.CompileWorkActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.CompileEmployActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
