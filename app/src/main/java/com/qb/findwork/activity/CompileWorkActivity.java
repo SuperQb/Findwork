@@ -14,7 +14,7 @@ public class CompileWorkActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_compile_work);
+        setContentView(R.layout.activity_comdpile_work);
         init();
     }
     public void init(){
