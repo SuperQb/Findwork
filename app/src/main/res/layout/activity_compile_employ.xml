@@ -38,7 +38,8 @@
             android:gravity="center"
             android:text="发布"
             android:textColor="#ffffff"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:id="@+id/compile_employ_push"/>
     </RelativeLayout>
 
 
@@ -65,14 +66,13 @@
                     android:src="@drawable/ic_account_circle_black_24dp" />
 
                 <EditText
-                    android:id="@+id/compile_work_position"
+                    android:id="@+id/compile_employ_position"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="53dp"
                     android:background="#ffffff"
                     android:hint="理想职位"
-                    android:inputType="number"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textSize="20sp" />
@@ -101,14 +101,13 @@
                     android:src="@drawable/ic_wc_black_24dp" />
 
                 <EditText
-                    android:id="@+id/compile_work_pay"
+                    android:id="@+id/compile_employ_pay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="53dp"
                     android:background="#ffffff"
                     android:hint="理想薪资"
-                    android:inputType="number"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textSize="20sp" />
@@ -122,7 +121,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/rl_work_sex"
+                android:id="@+id/rl_employ_sex"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/item_selector">
@@ -135,14 +134,13 @@
                     android:src="@drawable/ic_wc_black_24dp" />
 
                 <EditText
-                    android:id="@+id/compile_work_sex"
+                    android:id="@+id/compile_employ_sex"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="53dp"
                     android:background="#ffffff"
                     android:hint="性别"
-                    android:inputType="number"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textSize="20sp" />
@@ -170,14 +168,13 @@
                     android:src="@drawable/ic_account_circle_black_24dp" />
 
                 <EditText
-                    android:id="@+id/compile_work_location"
+                    android:id="@+id/compile_employ_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="53dp"
                     android:background="#ffffff"
                     android:hint="理想工作地点"
-                    android:inputType="number"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textSize="20sp" />
@@ -190,7 +187,39 @@
                     android:background="@color/line_color" />
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/Relat_phone"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/item_selector">
 
+                <ImageView
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/ic_wc_black_24dp" />
+
+                <EditText
+                    android:id="@+id/compile_employ_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="53dp"
+                    android:background="#ffffff"
+                    android:hint="联系电话"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="45dp"
+                    android:background="@color/line_color" />
+            </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl_work_more"
                 android:layout_width="match_parent"
@@ -209,7 +238,7 @@
                     android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/compile_tv_work_more_introduce"
+                    android:id="@+id/compile_tv_employ_more_introduce"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/tv_work_more_title_introduce"
@@ -249,7 +278,7 @@
                     android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/compile_tv_work_more_content"
+                    android:id="@+id/compile_tv_employ_more_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/tv_work_more_title_contente"
@@ -289,7 +318,7 @@
                     android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/compile_tv_work_more_required"
+                    android:id="@+id/compile_tv_employ_more_required"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/tv_work_more_title_required"

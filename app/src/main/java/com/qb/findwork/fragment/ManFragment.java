@@ -1,7 +1,9 @@
 package com.qb.findwork.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,11 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ManFragment extends Fragment {
+public class ManFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     private RecyclerView recyclerView;
     private List<Workdata> workdatas;
     private RecyclerViewAdapter adapter;
-
+    private SwipeRefreshLayout mSwipeLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,9 @@ public class ManFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
+        mSwipeLayout = (SwipeRefreshLayout)view.findViewById(R.id.man_swipe_container);
+        mSwipeLayout.setOnRefreshListener(this);
+        mSwipeLayout.setColorSchemeResources(R.color.colorPrimary);
         return view;
     }
 
@@ -51,5 +56,15 @@ public class ManFragment extends Fragment {
         workdatas.add(new Workdata("求工作二","王先生",R.mipmap.ulinxinru));
         workdatas.add(new Workdata("求工作三","王先生",R.mipmap.ulinxinru));
         workdatas.add(new Workdata("求工作四","王先生",R.mipmap.ulinxinru));
+    }
+
+    @Override
+    public void onRefresh() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeLayout.setRefreshing(false);
+            }
+        }, 5000);
     }
 }

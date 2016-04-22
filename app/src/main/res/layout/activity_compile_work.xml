@@ -37,7 +37,8 @@
             android:gravity="center"
             android:text="发布"
             android:textColor="#ffffff"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:id="@+id/work_push"/>
     </RelativeLayout>
 
     <ScrollView
@@ -71,7 +72,6 @@
                 android:layout_marginLeft="53dp"
                 android:background="#ffffff"
                 android:hint="职位"
-                android:inputType="number"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textSize="20sp" />
@@ -107,7 +107,6 @@
                 android:layout_marginLeft="53dp"
                 android:background="#ffffff"
                 android:hint="薪资"
-                android:inputType="number"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textSize="20sp" />
@@ -141,7 +140,6 @@
                 android:layout_marginLeft="53dp"
                 android:background="#ffffff"
                 android:hint="性别要求"
-                android:inputType="number"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textSize="20sp" />
@@ -176,6 +174,38 @@
                 android:layout_marginLeft="53dp"
                 android:background="#ffffff"
                 android:hint="工作地点"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textSize="20sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="45dp"
+                android:background="@color/line_color" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/Relat_work_phone"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/item_selector">
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/ic_wc_black_24dp" />
+
+            <EditText
+                android:id="@+id/compile_work_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="53dp"
+                android:background="#ffffff"
+                android:hint="联系电话"
                 android:inputType="number"
                 android:maxLines="1"
                 android:singleLine="true"
@@ -188,7 +218,6 @@
                 android:layout_marginLeft="45dp"
                 android:background="@color/line_color" />
         </RelativeLayout>
-
 
         <RelativeLayout
             android:id="@+id/rl_work_more"

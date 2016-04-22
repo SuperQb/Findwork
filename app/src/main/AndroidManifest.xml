@@ -55,7 +55,6 @@
         <activity
             android:name=".activity.SexActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.AgeActivity" />
         <activity
             android:name=".activity.CompileWorkActivity"
             android:theme="@style/AppTheme.NoActionBar" />
