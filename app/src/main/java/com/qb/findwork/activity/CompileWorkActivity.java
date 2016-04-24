@@ -26,6 +26,8 @@ public class CompileWorkActivity extends AppCompatActivity implements View.OnCli
 
     private ImageView workBack;
     private TextView workpush;
+    private String position,pay,sex,location,introduce,content,required,phone;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +64,7 @@ public class CompileWorkActivity extends AppCompatActivity implements View.OnCli
     }
     public void push(){
 
+        idAllIn();
         Log.i("workPosition", workPosition.getText().toString());
         Log.i("workPay", workPay.getText().toString());
         Log.i("workSex", workSex.getText().toString());
@@ -71,5 +74,26 @@ public class CompileWorkActivity extends AppCompatActivity implements View.OnCli
         Log.i("workRequired", workRequired.getText().toString());
         Log.i("workPhone", workPhone.getText().toString());
     }
+    public boolean idAllIn(){
+        getText();
 
+        if(position.isEmpty()||pay.isEmpty()||sex.isEmpty()||location.isEmpty()||position.isEmpty()||content.isEmpty()||required.isEmpty()||phone.isEmpty()){
+            Log.i("all","请填写完整");
+            return false;
+
+        }
+        return true;
+
+
+    }
+    public void getText(){
+        position=workPosition.getText().toString();
+        pay=workPay.getText().toString();
+        sex=workSex.getText().toString();
+        location=workLocation.getText().toString();
+        introduce=workIntroduce.getText().toString();
+        content=workContent.getText().toString();
+        required=workRequired.getText().toString();
+        phone=workPhone.getText().toString();
+    }
 }

@@ -25,6 +25,8 @@ public class CompileEmployActivity extends AppCompatActivity implements View.OnC
     private EditText employPhone;
     private Emloydate emloyDate;
 
+    private String position,pay,sex,location,introduce,content,required,phone;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,7 @@ public class CompileEmployActivity extends AppCompatActivity implements View.OnC
 
     public void push() {
 
+        idAllIn();
         //emloyDate=new Emloydate();
         Log.i("employPosition", employPosition.getText().toString());
         Log.i("employPay", employPay.getText().toString());
@@ -79,5 +82,27 @@ public class CompileEmployActivity extends AppCompatActivity implements View.OnC
         Log.i("employPhone", employPhone.getText().toString());
 
 
+    }
+    public boolean idAllIn(){
+        getText();
+
+        if(position.isEmpty()||pay.isEmpty()||sex.isEmpty()||location.isEmpty()||position.isEmpty()||content.isEmpty()||required.isEmpty()||phone.isEmpty()){
+             Log.i("all","请填写完整");
+            return false;
+
+        }
+        return true;
+
+
+    }
+    public void getText(){
+        position=employPosition.getText().toString();
+        pay=employPay.getText().toString();
+        sex=employSex.getText().toString();
+        location=employLocation.getText().toString();
+        introduce=employIntroduce.getText().toString();
+        content=employContent.getText().toString();
+        required=employRequired.getText().toString();
+        phone=employPhone.getText().toString();
     }
 }

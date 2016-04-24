@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         fragmentManager = getSupportFragmentManager();
         NavigationView nv = (NavigationView) findViewById(R.id.nav_view);
-        View headerView = nv.getHeaderView(0);
-        linearlayoutPerson = (LinearLayout) headerView.findViewById(R.id.person);
+        //View headerView = nv.getHeaderView(0);
+        linearlayoutPerson = (LinearLayout) nv.findViewById(R.id.person);
         linearlayoutPerson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_about) {
-            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
             startActivity(intent);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
