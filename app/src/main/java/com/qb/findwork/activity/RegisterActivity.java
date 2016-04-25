@@ -14,19 +14,11 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.qb.findwork.R;
-import com.qb.findwork.data.User;
+import com.qb.findwork.data.UserLogin;
 import com.qb.findwork.util.HttpGetString;
 import com.qb.findwork.util.HttpUtil;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
 import cn.smssdk.EventHandler;
@@ -41,9 +33,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText activity_register_password_two;
     private EditText activity_per_code;
     private String username, userpass, userpassTwo, code;
-    private  Button get_code;
-    private final String appKEY="1205e0cc1f874";
-    private  final  String appSecret="6031c73fbee92a4a53f6a3c3def59792";
+    private Button get_code;
+    private final String appKEY = "1205e0cc1f874";
+    private final String appSecret = "6031c73fbee92a4a53f6a3c3def59792";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,13 +47,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     public void init() {
+        SMSSDK.initSDK(this, appKEY, appSecret);
         register_back = (ImageView) findViewById(R.id.register_back);
         button_register = (Button) findViewById(R.id.button_register);
         activity_register_phone = (EditText) findViewById(R.id.activity_register_phone);
         activity_register_password = (EditText) findViewById(R.id.activity_register_password);
         activity_register_password_two = (EditText) findViewById(R.id.activity_register_password_two);
         activity_per_code = (EditText) findViewById(R.id.activity_per_code);
-        get_code= (Button) findViewById(R.id.get_code);
+        get_code = (Button) findViewById(R.id.get_code);
         register_back.setOnClickListener(this);
         button_register.setOnClickListener(this);
         get_code.setOnClickListener(this);
@@ -78,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             case R.id.button_register:
                 register();
                 break;
-                //isAllIn();
+            //isAllIn();
             default:
                 break;
         }
@@ -90,17 +84,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void run() {
                 //try {
-                    userpass = activity_register_password.getText().toString();
-                    username = activity_register_phone.getText().toString();
+                userpass = activity_register_password.getText().toString();
+                username = activity_register_phone.getText().toString();
 
-                    String address = "http://192.168.0.4:8080/Test/Testt?username=qubo";
-                    HttpURLConnection connection=HttpUtil.sedHttpRequest(address);
-                    //发送数据
+                String address = "http://192.168.0.4:8080/Test/Testt?username=qubo";
+                HttpURLConnection connection = HttpUtil.sedHttpRequest(address);
+                //发送数据
 
-                    //接收数据（是否注册成功，检查重复）
-                    String jsonData= HttpGetString.HttpgetString(connection);
-                    Log.i("jsonData",jsonData);
-                    //parseJSONWithJSONObject(jsonData);
+                //接收数据（是否注册成功，检查重复）
+                String jsonData = HttpGetString.HttpgetString(connection);
+                Log.i("jsonData", jsonData);
+                //parseJSONWithJSONObject(jsonData);
             }
         }).start();
     }
@@ -139,16 +133,16 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
 
         Gson gson = new Gson();
-        List<User> userList = gson.fromJson(jsonData, new TypeToken<List<User>>() {
+        List<UserLogin> userList = gson.fromJson(jsonData, new TypeToken<List<UserLogin>>() {
         }.getType());
-        for (User user : userList) {
+        for (UserLogin user : userList) {
             Log.i("useid", user.getUserId());
             Log.i("username", user.getUsername());
         }
 
     }
 
-    public void getCode(){
+    public void getCode() {
         initSDK();
         //SMSSDK.initSDK(this, appKEY, appSecret);
         SMSSDK.getVerificationCode("86", "15202902579");
@@ -159,7 +153,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      * 初始化短信SDK
      */
     private void initSDK() {
-        SMSSDK.initSDK(this, appKEY, appSecret);
+
         EventHandler eventHandler = new EventHandler() {
             @Override
             public void afterEvent(int event, int result, Object data) {
@@ -174,6 +168,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         SMSSDK.registerEventHandler(eventHandler);
 
     }
+
+
     Handler handler = new Handler() {
         public void handleMessage(Message msg) {
             if (msg.what == -9) {
@@ -185,16 +181,19 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 int event = msg.arg1;
                 int result = msg.arg2;
                 Object data = msg.obj;
-                Log.e("event", "event=" + event);
+                Log.i("event", "event=" + event);
                 if (result == SMSSDK.RESULT_COMPLETE) {
                     // 短信注册成功后，返回MainActivity,然后提示新好友
                     if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {// 提交验证码成功
                         Toast.makeText(getApplicationContext(), "提交验证码成功",
                                 Toast.LENGTH_SHORT).show();
 
+                        //数据发送发送服务器，进行注册
+
                     } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
                         Toast.makeText(getApplicationContext(), "验证码已经发送",
                                 Toast.LENGTH_SHORT).show();
+
                     } else {
                         ((Throwable) data).printStackTrace();
                     }

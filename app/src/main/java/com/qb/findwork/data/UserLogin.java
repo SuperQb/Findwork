@@ -1,6 +1,6 @@
 package com.qb.findwork.data;
 
-public class User {
+public class UserLogin {
     private String userId;
     private String username;
 
@@ -20,7 +20,7 @@ public class User {
         this.username = username;
     }
 
-    public User(String userId, String username) {
+    public UserLogin(String userId, String username) {
         super();
         this.userId = userId;
         this.username = username;
