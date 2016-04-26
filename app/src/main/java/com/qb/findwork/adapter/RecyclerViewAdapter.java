@@ -1,8 +1,11 @@
 package com.qb.findwork.adapter;
 
+import android.app.Application;
 import android.content.Context;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,7 +15,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.qb.findwork.MyApplication;
 import com.qb.findwork.R;
+import com.qb.findwork.activity.LoginActivity;
 import com.qb.findwork.activity.WorkActivity;
 import com.qb.findwork.data.Workdata;
 
@@ -65,8 +70,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         personViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context,WorkActivity.class);
-                //intent.putExtra("News",newses.get(j));
+
+
+                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+                boolean isLogin = pref.getBoolean("remember_password", false);
+                Intent intent;
+                if (isLogin == true) {
+                    intent = new Intent(context, WorkActivity.class);
+
+                }
+                else{
+                    intent = new Intent(context, LoginActivity.class);
+                }//intent.putExtra("News",newses.get(j));
                 context.startActivity(intent);
                 //Log.i("点击",j+"");
             }

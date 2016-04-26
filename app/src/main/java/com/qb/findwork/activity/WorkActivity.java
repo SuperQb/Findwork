@@ -12,9 +12,10 @@ import com.qb.findwork.R;
 
 public class WorkActivity extends AppCompatActivity {
 
-    private  Toolbar toolbar;
-    private  CollapsingToolbarLayout collapsingToolbarLayout;
+    private Toolbar toolbar;
+    private CollapsingToolbarLayout collapsingToolbarLayout;
     private FloatingActionButton fab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +25,8 @@ public class WorkActivity extends AppCompatActivity {
 
 
     }
-    public void init(){
+
+    public void init() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_chevron_left_white_24dp));

@@ -10,15 +10,13 @@ import java.net.HttpURLConnection;
  * Created by QB on 2016/4/23.
  */
 public class HttpGetString {
-    public  static String HttpgetString(HttpURLConnection connection)
-    {
+    public static String HttpgetString(HttpURLConnection connection) {
         try {
-            InputStream in =connection.getInputStream();
-            BufferedReader reader =new BufferedReader(new InputStreamReader(in));
-            StringBuilder response =new StringBuilder();
+            InputStream in = connection.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            StringBuilder response = new StringBuilder();
             String line;
-            while ((line=reader.readLine())!=null)
-            {
+            while ((line = reader.readLine()) != null) {
                 response.append(line);
             }
             return response.toString();

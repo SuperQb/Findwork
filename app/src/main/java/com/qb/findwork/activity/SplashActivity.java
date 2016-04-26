@@ -1,6 +1,8 @@
 package com.qb.findwork.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -11,14 +13,23 @@ import java.util.TimerTask;
 
 
 public class SplashActivity extends AppCompatActivity {
+    private Intent intent;
+    private SharedPreferences pref;
+    private boolean idLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
+        idLogin = pref.getBoolean("remember_password", false);
         Timer time = new Timer();
-        final Intent intent = new Intent(this, MainActivity.class);
+
+        if (idLogin == true) {
+            intent = new Intent(this, MainActivity.class);
+        } else {
+            intent = new Intent(this, LoginActivity.class);
+        }
         TimerTask task = new TimerTask() {
 
             @Override

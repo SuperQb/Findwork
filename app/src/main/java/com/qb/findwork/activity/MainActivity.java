@@ -1,9 +1,12 @@
 package com.qb.findwork.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
+
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.qb.findwork.R;
 import com.qb.findwork.fragment.MainFragment;
@@ -23,7 +27,7 @@ import com.qb.findwork.fragment.WorkFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    SharedPreferences pref;
     FragmentManager fragmentManager;
     FragmentTransaction transaction;
     LinearLayout linearlayoutPerson;
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity
     View actionB;
     View actionA;
     Toolbar toolbar;
+    boolean isLogin = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +57,14 @@ public class MainActivity extends AppCompatActivity
         linearlayoutPerson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, PersonActivity.class);
+                Intent intent;
+                isLogin = pref.getBoolean("remember_password", false);
+                if (isLogin == true) {
+                    intent = new Intent(MainActivity.this, PersonActivity.class);
+                }
+                else{
+                    intent=new Intent(MainActivity.this,LoginActivity.class);
+                }
                 startActivity(intent);
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
@@ -74,18 +86,20 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 floatingActionsMenu.toggle();
-                Intent intent=new Intent(MainActivity.this,CompileWorkActivity.class);
+                Intent intent = new Intent(MainActivity.this, CompileWorkActivity.class);
                 startActivity(intent);
             }
         });
         actionA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,CompileEmployActivity.class);
+                Intent intent = new Intent(MainActivity.this, CompileEmployActivity.class);
                 startActivity(intent);
                 floatingActionsMenu.toggle();
             }
         });
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
+
     }
 
     @Override
@@ -118,6 +132,7 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        isLogin = pref.getBoolean("remember_password", false);
         transaction = fragmentManager.beginTransaction();
         int id = item.getItemId();
         if (id == R.id.nav_main) {
@@ -135,10 +150,18 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_like) {
             //收藏
         } else if (id == R.id.nav_setting) {
-            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+
+            Intent intent;
+            if (isLogin == true) {
+                Log.i("islogin", isLogin + "");
+                intent = new Intent(MainActivity.this, SettingsActivity.class);
+            } else {
+                Log.i("islogin", isLogin + "");
+                intent = new Intent(MainActivity.this, LoginActivity.class);
+            }
             startActivity(intent);
         } else if (id == R.id.nav_about) {
-            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(intent);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

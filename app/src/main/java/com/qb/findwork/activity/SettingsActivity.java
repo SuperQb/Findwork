@@ -1,7 +1,6 @@
 package com.qb.findwork.activity;
 
 
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -32,7 +31,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     public void init() {
         setting_back = (ImageView) findViewById(R.id.settting_back);
         Relat_setting_cash = (RelativeLayout) findViewById(R.id.Relat_setting_cash);
-        setting_cash_m= (TextView) findViewById(R.id.setting_cash_m);
+        setting_cash_m = (TextView) findViewById(R.id.setting_cash_m);
         updateCacheView();
         setting_back.setOnClickListener(this);
         Relat_setting_cash.setOnClickListener(this);
@@ -67,7 +66,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                     }
                 });
 
-               mMaterialDialog.show();
+                mMaterialDialog.show();
                 break;
 
             default:
@@ -77,6 +76,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
 
     }
+
     private void updateCacheView() {
         setting_cash_m.setText(String.format("%s M", DataClearManager.getApplicationDataSize(getApplication())));
     }
