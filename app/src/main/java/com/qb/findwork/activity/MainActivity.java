@@ -23,6 +23,10 @@ import com.qb.findwork.R;
 import com.qb.findwork.fragment.MainFragment;
 import com.qb.findwork.fragment.ManFragment;
 import com.qb.findwork.fragment.WorkFragment;
+import com.qb.findwork.util.HttpGetString;
+import com.qb.findwork.util.HttpUtil;
+
+import java.net.HttpURLConnection;
 
 
 public class MainActivity extends AppCompatActivity
@@ -167,6 +171,25 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void register() {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //try {
+
+                String address = "http://192.168.11.154:8080/Test/PersonSev";
+                HttpURLConnection connection = HttpUtil.sedHttpRequest(address);
+                //发送数据
+
+                //接收数据（是否注册成功，检查重复）
+                String jsonData = HttpGetString.HttpgetString(connection);
+                Log.i("jsonData", jsonData);
+                //parseJSONWithJSONObject(jsonData);
+            }
+        }).start();
     }
 
 }
