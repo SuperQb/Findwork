@@ -82,7 +82,6 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
                 wv.setOffset(2);
                 wv.setItems(Arrays.asList(PLANETS));
                 wv.setSeletion(20);
-
                 wv.setOnWheelViewListener(new WheelView.OnWheelViewListener() {
                     @Override
                     public void onSelected(int selectedIndex, String item) {
@@ -90,7 +89,6 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
                         age=item;
                     }
                 });
-
                 final MaterialDialog mMaterialDialog = new MaterialDialog(this);
                 mMaterialDialog.setTitle("年龄");
                 mMaterialDialog.setView(outerView);
@@ -117,4 +115,5 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
 
         }
     }
+
 }

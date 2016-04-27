@@ -1,5 +1,7 @@
 package com.qb.findwork.util;
 
+import android.util.Log;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -23,6 +25,7 @@ public class HttpUtil {
             connection.connect();
             if(connection.getResponseCode()==200){
 
+                Log.i("test","网络连接成功");
                 return connection;
             }
         } catch (MalformedURLException e) {

@@ -27,6 +27,7 @@ import com.qb.findwork.util.HttpGetString;
 import com.qb.findwork.util.HttpUtil;
 
 import java.net.HttpURLConnection;
+import java.net.URL;
 
 
 public class MainActivity extends AppCompatActivity
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
         pref = PreferenceManager.getDefaultSharedPreferences(this);
-
+        getwork();
     }
 
     @Override
@@ -173,17 +174,17 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void register() {
+    public void getwork() {
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 //try {
-
-                String address = "http://192.168.11.154:8080/Test/PersonSev";
+                String address = "http://192.168.0.4:8080/Test/Testt2?username=quanwei";
                 HttpURLConnection connection = HttpUtil.sedHttpRequest(address);
                 //发送数据
-
+                //String jsonData = HttpGetString.HttpgetString(connection);
+                //Log.i("jsonData", jsonData);
                 //接收数据（是否注册成功，检查重复）
                 String jsonData = HttpGetString.HttpgetString(connection);
                 Log.i("jsonData", jsonData);
