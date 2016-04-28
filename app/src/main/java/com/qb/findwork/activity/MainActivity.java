@@ -19,7 +19,11 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.qb.findwork.R;
+import com.qb.findwork.data.Person;
+import com.qb.findwork.data.UserLogin;
 import com.qb.findwork.fragment.MainFragment;
 import com.qb.findwork.fragment.ManFragment;
 import com.qb.findwork.fragment.WorkFragment;
@@ -28,19 +32,23 @@ import com.qb.findwork.util.HttpUtil;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    SharedPreferences pref;
-    FragmentManager fragmentManager;
-    FragmentTransaction transaction;
-    LinearLayout linearlayoutPerson;
-    FloatingActionsMenu floatingActionsMenu;
-    View actionB;
-    View actionA;
-    Toolbar toolbar;
-    boolean isLogin = false;
+    private  SharedPreferences pref;
+    private FragmentManager fragmentManager;
+    private FragmentTransaction transaction;
+    private LinearLayout linearlayoutPerson;
+    private FloatingActionsMenu floatingActionsMenu;
+    private View actionB;
+    private View actionA;
+    private Toolbar toolbar;
+    private boolean isLogin = false;
+    public static List<Person> personList;
+    private SharedPreferences.Editor editor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +91,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void init() {
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
         floatingActionsMenu = (FloatingActionsMenu) findViewById(R.id.multiple_actions);
         actionB = findViewById(R.id.action_b);
         actionA = findViewById(R.id.action_a);
@@ -103,8 +112,7 @@ public class MainActivity extends AppCompatActivity
                 floatingActionsMenu.toggle();
             }
         });
-        pref = PreferenceManager.getDefaultSharedPreferences(this);
-        getwork();
+        getPerson();
     }
 
     @Override
@@ -174,23 +182,39 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void getwork() {
+    public void getPerson() {
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                //try {
-                String address = "http://192.168.0.4:8080/Test/Testt2?username=quanwei";
+
+                //向服务器发送注册时候的手机号，服务器进行查询，返回个人详细资料
+                String phone = pref.getString("phone", "NO");
+                String address = HttpUtil.ipUrl+"Testt2?registerPhone="+phone;
                 HttpURLConnection connection = HttpUtil.sedHttpRequest(address);
-                //发送数据
-                //String jsonData = HttpGetString.HttpgetString(connection);
-                //Log.i("jsonData", jsonData);
-                //接收数据（是否注册成功，检查重复）
                 String jsonData = HttpGetString.HttpgetString(connection);
                 Log.i("jsonData", jsonData);
-                //parseJSONWithJSONObject(jsonData);
+                parseJSONWithJSONObject(jsonData);
             }
         }).start();
+
+    }
+    public void parseJSONWithJSONObject(String jsonData) {
+
+
+        Gson gson = new Gson();
+        personList = gson.fromJson(jsonData, new TypeToken<List<Person>>() {
+        }.getType());
+        for (Person person : personList) {
+            editor = pref.edit();
+            editor.putString("personName", person.getName());
+            editor.putString("personSex",  person.getSex());
+            editor.putString("personAge", person.getAge());
+            editor.putString("personPhone", person.getPhone());
+            editor.commit();
+
+        }
+
     }
 
 }

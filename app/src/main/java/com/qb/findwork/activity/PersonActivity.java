@@ -3,6 +3,8 @@ package com.qb.findwork.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +31,7 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
     private TextView per_name, per_sex, per_age, per_phone;
     private ImageView back;
     private String age;
+    private SharedPreferences pref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,7 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
 
 
     public void init() {
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
         Relat_name = (RelativeLayout) findViewById(R.id.Relat_name);
         Relat_sex = (RelativeLayout) findViewById(R.id.Relat_sex);
         Relat_age = (RelativeLayout) findViewById(R.id.Relat_age);
@@ -53,6 +57,19 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
         Relat_sex.setOnClickListener(this);
         Relat_age.setOnClickListener(this);
         back.setOnClickListener(this);
+        setPerson();
+    }
+    public void setPerson()
+    {
+        String name = pref.getString("personName", "兼职校园");
+        String age = pref.getString("personAge", "18");
+        String sex = pref.getString("personSex", "男");
+        String phone = pref.getString("personPhone", "10086");
+        per_name.setText(name);
+        per_age.setText(age);
+        per_sex.setText(sex);
+        per_phone.setText(phone);
+
     }
     @Override
     public void onClick(View v) {

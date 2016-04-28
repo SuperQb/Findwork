@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     private Button mSignInButton;
     boolean isRemember, isLogin;
     private TextView tv_look;
+    private String registerPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -87,7 +87,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 userpass = activity_register_password.getText().toString();
                 username = activity_register_phone.getText().toString();
 
-                String address = "http://192.168.0.4:8080/Test/Testt?username=qubo";
+                String address = HttpUtil.ipUrl+"Testt";
+
                 HttpURLConnection connection = HttpUtil.sedHttpRequest(address);
                 //发送数据
 
@@ -183,12 +184,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 Object data = msg.obj;
                 Log.i("event", "event=" + event);
                 if (result == SMSSDK.RESULT_COMPLETE) {
-                    // 短信注册成功后，返回MainActivity,然后提示新好友
+                    // 短信注册成功后，
                     if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {// 提交验证码成功
                         Toast.makeText(getApplicationContext(), "提交验证码成功",
                                 Toast.LENGTH_SHORT).show();
 
                         //数据发送发送服务器，进行注册
+                        register();
 
                     } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
                         Toast.makeText(getApplicationContext(), "验证码已经发送",

@@ -5,9 +5,19 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.qb.findwork.R;
+import com.qb.findwork.data.Person;
+import com.qb.findwork.data.Work;
+import com.qb.findwork.util.HttpGetString;
+import com.qb.findwork.util.HttpGetWork;
+import com.qb.findwork.util.HttpUtil;
 
+import java.net.HttpURLConnection;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -16,6 +26,7 @@ public class SplashActivity extends AppCompatActivity {
     private Intent intent;
     private SharedPreferences pref;
     private boolean idLogin;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +41,7 @@ public class SplashActivity extends AppCompatActivity {
         } else {
             intent = new Intent(this, LoginActivity.class);
         }
+        HttpGetWork.getPerson();
         TimerTask task = new TimerTask() {
 
             @Override
@@ -44,6 +56,8 @@ public class SplashActivity extends AppCompatActivity {
         time.schedule(task, 2000);// 2秒进行跳转
 
     }
+
+
 
 
 }

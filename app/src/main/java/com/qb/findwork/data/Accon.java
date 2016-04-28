@@ -5,6 +5,7 @@ package com.qb.findwork.data;
  */
 public class Accon {
     private String phone;
+    private String key;
 
     public Accon(String phone, String key) {
         this.phone = phone;
@@ -28,5 +29,4 @@ public class Accon {
         this.key = key;
     }
 
-    private String key;
 }

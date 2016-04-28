@@ -12,6 +12,7 @@ import java.net.URL;
  */
 public class HttpUtil {
 
+    public static String ipUrl="http://192.168.0.4:8080/Test/";
     public  static HttpURLConnection sedHttpRequest(String address){
         HttpURLConnection connection ;
         try {

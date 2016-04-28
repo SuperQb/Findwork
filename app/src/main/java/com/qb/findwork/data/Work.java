@@ -15,6 +15,7 @@ public class Work {
     private String requid;
     private String callphone;
     private String phone;
+    private String type;
 
     public Work(String id, String position, String pay, String sex, String location, String intrduce, String content, String requid, String callphone, String phone, String type) {
         this.id = id;
@@ -119,6 +120,6 @@ public class Work {
         this.type = type;
     }
 
-    private String type;
+
 
 }
