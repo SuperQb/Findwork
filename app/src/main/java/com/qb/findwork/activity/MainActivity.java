@@ -28,6 +28,7 @@ import com.qb.findwork.data.UserLogin;
 import com.qb.findwork.fragment.MainFragment;
 import com.qb.findwork.fragment.ManFragment;
 import com.qb.findwork.fragment.WorkFragment;
+import com.qb.findwork.util.ActivityManagers;
 import com.qb.findwork.util.HttpGetPerson;
 import com.qb.findwork.util.HttpGetString;
 import com.qb.findwork.util.HttpUtil;
@@ -48,7 +49,6 @@ public class MainActivity extends AppCompatActivity
     private View actionA;
     private Toolbar toolbar;
     private boolean isLogin = false;
-
     //private SharedPreferences.Editor editor;
 
 
@@ -93,6 +93,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void init() {
+
+        ActivityManagers.addActivity(this);
         pref = PreferenceManager.getDefaultSharedPreferences(this);
         floatingActionsMenu = (FloatingActionsMenu) findViewById(R.id.multiple_actions);
         actionB = findViewById(R.id.action_b);
@@ -185,6 +187,9 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityManagers.removeActivity(this);
+    }
 }

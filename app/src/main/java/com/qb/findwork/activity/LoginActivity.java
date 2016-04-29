@@ -17,9 +17,7 @@ import android.widget.Toast;
 
 import com.qb.findwork.R;
 
-/**
- * A login screen that offers login via email/password.
- */
+
 public class LoginActivity extends AppCompatActivity implements OnClickListener {
 
     // UI references.

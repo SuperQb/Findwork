@@ -1,6 +1,8 @@
 package com.qb.findwork.activity;
 
 
+import android.app.ActivityManager;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 
 import com.qb.findwork.R;
+import com.qb.findwork.util.ActivityManagers;
 import com.qb.findwork.util.DataClearManager;
 
 import me.drakeet.materialdialog.MaterialDialog;
@@ -29,6 +32,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     }
 
     public void init() {
+        ActivityManagers.addActivity(this);
         setting_back = (ImageView) findViewById(R.id.settting_back);
         Relat_setting_cash = (RelativeLayout) findViewById(R.id.Relat_setting_cash);
         setting_cash_m = (TextView) findViewById(R.id.setting_cash_m);
@@ -55,7 +59,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                         mMaterialDialog.dismiss();
                         DataClearManager.cleanApplicationData(SettingsActivity.this);
                         updateCacheView();
-
                     }
                 });
                 mMaterialDialog.setNegativeButton("取消", new View.OnClickListener() {
@@ -65,10 +68,14 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
                     }
                 });
-
                 mMaterialDialog.show();
                 break;
 
+            case R.id.logout_button:
+                Intent intent =new Intent(this,LoginActivity.class);
+                startActivity(intent);
+                ActivityManagers.finishAll();
+                break;
             default:
                 break;
 
@@ -79,5 +86,11 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
     private void updateCacheView() {
         setting_cash_m.setText(String.format("%s M", DataClearManager.getApplicationDataSize(getApplication())));
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        ActivityManagers.removeActivity(this);
     }
 }
