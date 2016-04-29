@@ -41,7 +41,7 @@ public class SplashActivity extends AppCompatActivity {
         } else {
             intent = new Intent(this, LoginActivity.class);
         }
-        HttpGetWork.getPerson();
+        HttpGetWork.getWork();
         TimerTask task = new TimerTask() {
 
             @Override

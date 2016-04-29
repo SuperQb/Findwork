@@ -22,11 +22,13 @@ import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.qb.findwork.R;
+import com.qb.findwork.data.ListData;
 import com.qb.findwork.data.Person;
 import com.qb.findwork.data.UserLogin;
 import com.qb.findwork.fragment.MainFragment;
 import com.qb.findwork.fragment.ManFragment;
 import com.qb.findwork.fragment.WorkFragment;
+import com.qb.findwork.util.HttpGetPerson;
 import com.qb.findwork.util.HttpGetString;
 import com.qb.findwork.util.HttpUtil;
 
@@ -46,8 +48,8 @@ public class MainActivity extends AppCompatActivity
     private View actionA;
     private Toolbar toolbar;
     private boolean isLogin = false;
-    public static List<Person> personList;
-    private SharedPreferences.Editor editor;
+
+    //private SharedPreferences.Editor editor;
 
 
     @Override
@@ -112,7 +114,8 @@ public class MainActivity extends AppCompatActivity
                 floatingActionsMenu.toggle();
             }
         });
-        getPerson();
+        //获取个人资料数据
+        HttpGetPerson.getPerson();
     }
 
     @Override
@@ -182,39 +185,6 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void getPerson() {
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                //向服务器发送注册时候的手机号，服务器进行查询，返回个人详细资料
-                String phone = pref.getString("phone", "NO");
-                String address = HttpUtil.ipUrl+"Testt2?registerPhone="+phone;
-                HttpURLConnection connection = HttpUtil.sedHttpRequest(address);
-                String jsonData = HttpGetString.HttpgetString(connection);
-                Log.i("jsonData", jsonData);
-                parseJSONWithJSONObject(jsonData);
-            }
-        }).start();
-
-    }
-    public void parseJSONWithJSONObject(String jsonData) {
-
-
-        Gson gson = new Gson();
-        personList = gson.fromJson(jsonData, new TypeToken<List<Person>>() {
-        }.getType());
-        for (Person person : personList) {
-            editor = pref.edit();
-            editor.putString("personName", person.getName());
-            editor.putString("personSex",  person.getSex());
-            editor.putString("personAge", person.getAge());
-            editor.putString("personPhone", person.getPhone());
-            editor.commit();
-
-        }
-
-    }
 
 }

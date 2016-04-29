@@ -80,33 +80,6 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     }
 
 
-    public void getJason() {
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String address = "http://192.168.0.4:8080/Test/Testt?username=qubo";
-                HttpURLConnection connection = HttpUtil.sedHttpRequest(address);
-                //发送数据
-
-                //接收数据（是否注册成功，检查重复）
-                String jsonData = HttpGetString.HttpgetString(connection);
-                Log.i("jsonworkMain", jsonData);
-                //parseJSONWithJSONObject(jsonData);
-            }
-        }).start();
-    }
-
-    //解析jason数据，放到list
-    public void parseJSONWithJSONObject(String jsonData) {
-        Gson gson = new Gson();
-        List<Work> WorkList = gson.fromJson(jsonData, new TypeToken<List<UserLogin>>() {
-        }.getType());
-        for (Work work : WorkList) {
-
-        }
-
-    }
 }
 
 
