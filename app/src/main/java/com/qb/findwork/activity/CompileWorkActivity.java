@@ -9,10 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.qb.findwork.R;
+import com.qb.findwork.util.HttpUtil;
+import com.qb.findwork.util.ShareDate;
 
 public class CompileWorkActivity extends AppCompatActivity implements View.OnClickListener {
-
-
 
 
     private EditText workPosition;
@@ -26,7 +26,7 @@ public class CompileWorkActivity extends AppCompatActivity implements View.OnCli
 
     private ImageView workBack;
     private TextView workpush;
-    private String position,pay,sex,location,introduce,content,required,phone;
+    private String position, pay, sex, location, introduce, content, required, phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,17 +34,18 @@ public class CompileWorkActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_compile_work);
         init();
     }
-    public void init(){
-        workpush= (TextView) findViewById(R.id.work_push);
-        workBack= (ImageView) findViewById(R.id.compile_work_back);
-        workPosition= (EditText) findViewById(R.id.compile_work_position);
-        workPay= (EditText) findViewById(R.id.compile_work_pay);
-        workSex= (EditText) findViewById(R.id.compile_work_sex);
-        workLocation= (EditText) findViewById(R.id.compile_work_location);
-        workIntroduce= (EditText) findViewById(R.id.compile_tv_work_more_introduce);
-        workContent= (EditText) findViewById(R.id.compile_tv_work_more_content);
-        workRequired= (EditText) findViewById(R.id.compile_tv_work_more_required);
-        workPhone= (EditText) findViewById(R.id.compile_work_phone);
+
+    public void init() {
+        workpush = (TextView) findViewById(R.id.work_push);
+        workBack = (ImageView) findViewById(R.id.compile_work_back);
+        workPosition = (EditText) findViewById(R.id.compile_work_position);
+        workPay = (EditText) findViewById(R.id.compile_work_pay);
+        workSex = (EditText) findViewById(R.id.compile_work_sex);
+        workLocation = (EditText) findViewById(R.id.compile_work_location);
+        workIntroduce = (EditText) findViewById(R.id.compile_tv_work_more_introduce);
+        workContent = (EditText) findViewById(R.id.compile_tv_work_more_content);
+        workRequired = (EditText) findViewById(R.id.compile_tv_work_more_required);
+        workPhone = (EditText) findViewById(R.id.compile_work_phone);
 
         workBack.setOnClickListener(this);
         workpush.setOnClickListener(this);
@@ -52,17 +53,18 @@ public class CompileWorkActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        switch (v.getId())
-        {
+        switch (v.getId()) {
             case R.id.compile_work_back:
                 finish();
                 break;
             case R.id.work_push:
                 push();
-            default:break;
+            default:
+                break;
         }
     }
-    public void push(){
+
+    public void push() {
 
         idAllIn();
         Log.i("workPosition", workPosition.getText().toString());
@@ -73,12 +75,14 @@ public class CompileWorkActivity extends AppCompatActivity implements View.OnCli
         Log.i("workLocation", workLocation.getText().toString());
         Log.i("workRequired", workRequired.getText().toString());
         Log.i("workPhone", workPhone.getText().toString());
+        pushWork();
     }
-    public boolean idAllIn(){
+
+    public boolean idAllIn() {
         getText();
 
-        if(position.isEmpty()||pay.isEmpty()||sex.isEmpty()||location.isEmpty()||position.isEmpty()||content.isEmpty()||required.isEmpty()||phone.isEmpty()){
-            Log.i("all","请填写完整");
+        if (position.isEmpty() || pay.isEmpty() || sex.isEmpty() || location.isEmpty() || position.isEmpty() || content.isEmpty() || required.isEmpty() || phone.isEmpty()) {
+            Log.i("all", "请填写完整");
             return false;
 
         }
@@ -86,15 +90,37 @@ public class CompileWorkActivity extends AppCompatActivity implements View.OnCli
 
 
     }
-    public void getText(){
-        position=workPosition.getText().toString();
-        pay=workPay.getText().toString();
-        sex=workSex.getText().toString();
-        location=workLocation.getText().toString();
-        introduce=workIntroduce.getText().toString();
-        content=workContent.getText().toString();
-        required=workRequired.getText().toString();
-        phone=workPhone.getText().toString();
+
+    public void getText() {
+        position = workPosition.getText().toString();
+        pay = workPay.getText().toString();
+        sex = workSex.getText().toString();
+        location = workLocation.getText().toString();
+        introduce = workIntroduce.getText().toString();
+        content = workContent.getText().toString();
+        required = workRequired.getText().toString();
+        phone = workPhone.getText().toString();
+    }
+
+    public void pushWork() {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String rephone = ShareDate.getString("phone");
+                String address = HttpUtil.ipUrl + "Testt/&position=" + position
+                        + "&pay=" + pay
+                        + "&sex=" + sex
+                        + "&location" + location
+                        + "&introduce" + introduce
+                        + "&content" + content
+                        + "&required" + required
+                        + "&phone" + phone
+                        + "&rephone" + rephone;
+                HttpUtil.sedHttpRequest(address);
+            }
+        });
+
     }
 }
 /*

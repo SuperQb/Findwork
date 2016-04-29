@@ -13,8 +13,9 @@ import java.net.URL;
 public class HttpUtil {
 
     public static String ipUrl="http://192.168.0.4:8080/Test/";
+    public static HttpURLConnection connection ;
+
     public  static HttpURLConnection sedHttpRequest(String address){
-        HttpURLConnection connection ;
         try {
             URL url=new URL(address);
             connection= (HttpURLConnection) url.openConnection();
@@ -36,6 +37,8 @@ public class HttpUtil {
         }
         return null;
     }
-
+    public static void closeHttp(){
+        connection.disconnect();
+    }
 
 }

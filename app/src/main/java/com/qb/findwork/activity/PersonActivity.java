@@ -17,8 +17,12 @@ import android.widget.TextView;
 
 import com.qb.findwork.R;
 import com.qb.findwork.util.DataClearManager;
+import com.qb.findwork.util.HttpGetString;
+import com.qb.findwork.util.HttpUtil;
+import com.qb.findwork.util.ShareDate;
 import com.qb.findwork.view.WheelView;
 
+import java.net.HttpURLConnection;
 import java.util.Arrays;
 
 import me.drakeet.materialdialog.MaterialDialog;
@@ -30,8 +34,12 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
     private ImageView per_photo;
     private TextView per_name, per_sex, per_age, per_phone;
     private ImageView back;
-    private String age;
+
+
     private SharedPreferences pref;
+    private String name, age, sex, phone;
+    private TextView perSave;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,25 +60,28 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
         per_age = (TextView) findViewById(R.id.per_age);
         per_phone = (TextView) findViewById(R.id.per_phone);
         back = (ImageView) findViewById(R.id.per_back);
+        perSave = (TextView) findViewById(R.id.person_save);
         Relat_name.setOnClickListener(this);
         Relat_phone.setOnClickListener(this);
         Relat_sex.setOnClickListener(this);
         Relat_age.setOnClickListener(this);
         back.setOnClickListener(this);
+        perSave.setOnClickListener(this);
         setPerson();
     }
-    public void setPerson()
-    {
-        String name = pref.getString("personName", "兼职校园");
-        String age = pref.getString("personAge", "18");
-        String sex = pref.getString("personSex", "男");
-        String phone = pref.getString("personPhone", "10086");
+
+    public void setPerson() {
+        name = pref.getString("personName", "兼职校园");
+        age = pref.getString("personAge", "18");
+        sex = pref.getString("personSex", "男");
+        phone = pref.getString("personPhone", "10086");
         per_name.setText(name);
         per_age.setText(age);
         per_sex.setText(sex);
         per_phone.setText(phone);
 
     }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -79,8 +90,8 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.Relat_name:
                 Intent intentName = new Intent(PersonActivity.this, NameActivity.class);
-                startActivity(intentName);
                 overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
+                startActivity(intentName);
                 break;
             case R.id.Relat_phone:
                 Intent intentPhone = new Intent(PersonActivity.this, PhoneActivity.class);
@@ -103,7 +114,7 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onSelected(int selectedIndex, String item) {
 
-                        age=item;
+                        age = item;
                     }
                 });
                 final MaterialDialog mMaterialDialog = new MaterialDialog(this);
@@ -113,7 +124,7 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onClick(View v) {
                         mMaterialDialog.dismiss();
-                        Log.i("test",age);
+                        Log.i("test", age);
 
                     }
                 });
@@ -127,10 +138,34 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
 
                 mMaterialDialog.show();
                 break;
+            case R.id.person_save:
+                sendPerson();
             default:
                 break;
 
         }
     }
 
+    public void sendPerson() {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String rephone = ShareDate.getString("phone");
+                String address = HttpUtil.ipUrl + "Testt/?name=" + name
+                        + "&age=" + age
+                        + "&sex=" + sex
+                        + "phone" + phone
+                        + "rephone" + rephone;
+                HttpUtil.sedHttpRequest(address);
+            }
+        });
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        HttpUtil.closeHttp();
+    }
 }

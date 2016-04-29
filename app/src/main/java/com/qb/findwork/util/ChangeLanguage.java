@@ -33,6 +33,5 @@ public class ChangeLanguage {
         MyApplication.getContext().getResources().updateConfiguration(config, null);
         ShareDate.setString(LANGUAGE, CHINESE);
 
-
     }
 }

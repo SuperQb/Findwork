@@ -16,6 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.qb.findwork.R;
+import com.qb.findwork.util.HttpGetString;
+import com.qb.findwork.util.HttpUtil;
+
+import java.net.HttpURLConnection;
 
 
 public class LoginActivity extends AppCompatActivity implements OnClickListener {
@@ -99,25 +103,38 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         String password = mPasswordView.getText().toString();
         if (TextUtils.isEmpty(phone) || TextUtils.isEmpty(password)) {
             Toast.makeText(LoginActivity.this, "账号或密码不能为空", Toast.LENGTH_SHORT).show();
-        }
-        // 发送账号密码，服务器进行查询，返回值1、登陆成功，2、登陆失败（密码错误，无账号）
-        //验证密码是否正确
-        else if (phone.equals("123") && password.equals("123"))
+        }else {
+            // 发送账号密码，服务器进行查询，返回值1、登陆成功，2、登陆失败（密码错误，无账号）
+            //线程同步handle
+            String address = HttpUtil.ipUrl + "Testt/&username=" + phone + "&userpass=" + password;
+            HttpURLConnection connection = HttpUtil.sedHttpRequest(address);
+            //发送数据
+            //接收数据（是否注册成功，检查重复）
+            String jsonData = HttpGetString.HttpgetString(connection);
+            Log.i("jsonData", jsonData);
+             if (jsonData.equals("OK"))
 
-        {
-            editor = pref.edit();
-            editor.putBoolean("remember_password", true);
-            editor.putString("phone", phone);
-            editor.putString("password", password);
-            editor.putBoolean("islogin", true);
-            editor.commit();
-            Log.i("islogin", pref.getBoolean("remember_password", false) + "");
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        } else {
-            Toast.makeText(LoginActivity.this, "密码错误", Toast.LENGTH_SHORT).show();
+            {
+                editor = pref.edit();
+                editor.putBoolean("remember_password", true);
+                editor.putString("phone", phone);
+                editor.putString("password", password);
+                editor.putBoolean("islogin", true);
+                editor.commit();
+                Log.i("islogin", pref.getBoolean("remember_password", false) + "");
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(LoginActivity.this, "密码错误", Toast.LENGTH_SHORT).show();
+            }
         }
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        HttpUtil.closeHttp();
     }
 }
 

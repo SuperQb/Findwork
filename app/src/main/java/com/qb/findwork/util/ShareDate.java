@@ -11,7 +11,7 @@ import com.qb.findwork.MyApplication;
 public class ShareDate {
 
     private static SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext());
-    ;
+
     private static SharedPreferences.Editor editor = pref.edit();
 
     public static void setString(String key, String value) {

@@ -79,19 +79,16 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     public void register() {
-
+        //发送手机号、密码，获取结果：OK成功，NO失败
         new Thread(new Runnable() {
             @Override
             public void run() {
                 //try {
                 userpass = activity_register_password.getText().toString();
                 username = activity_register_phone.getText().toString();
-
-                String address = HttpUtil.ipUrl+"Testt";
-
+                String address = HttpUtil.ipUrl+"Testt/?username="+username+"&userpass="+userpass;
                 HttpURLConnection connection = HttpUtil.sedHttpRequest(address);
                 //发送数据
-
                 //接收数据（是否注册成功，检查重复）
                 String jsonData = HttpGetString.HttpgetString(connection);
                 Log.i("jsonData", jsonData);
@@ -208,5 +205,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     protected void onDestroy() {
         super.onDestroy();
         SMSSDK.unregisterAllEventHandler();
+        HttpUtil.closeHttp();
     }
 }

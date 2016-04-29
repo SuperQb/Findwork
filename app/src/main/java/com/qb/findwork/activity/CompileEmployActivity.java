@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.qb.findwork.R;
+import com.qb.findwork.util.HttpUtil;
+import com.qb.findwork.util.ShareDate;
 
 
 public class CompileEmployActivity extends AppCompatActivity implements View.OnClickListener {
@@ -81,7 +83,7 @@ public class CompileEmployActivity extends AppCompatActivity implements View.OnC
         Log.i("employRequired", employRequired.getText().toString());
         Log.i("employPhone", employPhone.getText().toString());
 
-
+        pushEm();
     }
 
     public boolean idAllIn() {
@@ -106,5 +108,24 @@ public class CompileEmployActivity extends AppCompatActivity implements View.OnC
         content = employContent.getText().toString();
         required = employRequired.getText().toString();
         phone = employPhone.getText().toString();
+    }
+    public void pushEm(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String rephone = ShareDate.getString("phone");
+                String address = HttpUtil.ipUrl + "Testt/?position=" + position
+                        + "&pay=" + pay
+                        + "&sex=" + sex
+                        + "&location" + location
+                        + "&introduce" + introduce
+                        + "&content" + content
+                        + "&required" + required
+                        + "&phone" + phone
+                        + "&rephone" + rephone;
+                HttpUtil.sedHttpRequest(address);
+            }
+        });
+
     }
 }
