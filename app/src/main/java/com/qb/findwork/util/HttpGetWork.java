@@ -20,7 +20,7 @@ public class HttpGetWork {
             public void run() {
 
                 //请求work数据
-                String address = HttpUtil.ipUrl + "Testt2";
+                String address = HttpUtil.ipUrl + "Getwork";
                 HttpURLConnection connection = HttpUtil.sedHttpRequest(address);
                 String jsonData = HttpGetString.HttpgetString(connection);
                 Log.i("jsonData", jsonData);
@@ -36,6 +36,7 @@ public class HttpGetWork {
         Gson gson = new Gson();
         ListData.workList = gson.fromJson(jsonData, new TypeToken<List<Work>>() {
         }.getType());
+
 //        for (Work work : workList) {
 //            //存入数据库
 //

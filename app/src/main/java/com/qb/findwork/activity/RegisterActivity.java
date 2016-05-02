@@ -70,9 +70,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 getCode();
                 break;
             case R.id.button_register:
+
+
+                if (isAllIn()) {
+
                 register();
-                break;
-            //isAllIn();
+                }
+
+                    break;
+
             default:
                 break;
         }
@@ -80,18 +86,24 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     public void register() {
         //发送手机号、密码，获取结果：OK成功，NO失败
+        userpass = activity_register_password.getText().toString();
+        username = activity_register_phone.getText().toString();
+        Log.i("test",userpass);
+        Log.i("test",username);
         new Thread(new Runnable() {
             @Override
             public void run() {
                 //try {
-                userpass = activity_register_password.getText().toString();
-                username = activity_register_phone.getText().toString();
-                String address = HttpUtil.ipUrl+"Testt/?username="+username+"&userpass="+userpass;
+                String address = HttpUtil.ipUrl + "Testt?username=" + username + "&userpass=" + userpass;
                 HttpURLConnection connection = HttpUtil.sedHttpRequest(address);
                 //发送数据
                 //接收数据（是否注册成功，检查重复）
                 String jsonData = HttpGetString.HttpgetString(connection);
                 Log.i("jsonData", jsonData);
+                if(jsonData.equals("OK"))
+                {
+                    finish();
+                }
                 //parseJSONWithJSONObject(jsonData);
             }
         }).start();
@@ -149,6 +161,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     /**
      * 初始化短信SDK
+
      */
     private void initSDK() {
 
@@ -187,7 +200,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 Toast.LENGTH_SHORT).show();
 
                         //数据发送发送服务器，进行注册
-                        register();
+                       // register();
 
                     } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
                         Toast.makeText(getApplicationContext(), "验证码已经发送",
@@ -203,8 +216,22 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     protected void onDestroy() {
+
         super.onDestroy();
-        SMSSDK.unregisterAllEventHandler();
-        HttpUtil.closeHttp();
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

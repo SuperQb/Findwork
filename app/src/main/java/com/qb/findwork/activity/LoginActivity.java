@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         }else {
             // 发送账号密码，服务器进行查询，返回值1、登陆成功，2、登陆失败（密码错误，无账号）
             //线程同步handle
-            String address = HttpUtil.ipUrl + "Testt/&username=" + phone + "&userpass=" + password;
+            String address = HttpUtil.ipUrl + "Testt?username=" + phone + "&userpass=" + password;
             HttpURLConnection connection = HttpUtil.sedHttpRequest(address);
             //发送数据
             //接收数据（是否注册成功，检查重复）

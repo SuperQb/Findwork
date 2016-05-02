@@ -152,11 +152,11 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void run() {
                 String rephone = ShareDate.getString("phone");
-                String address = HttpUtil.ipUrl + "Testt/?name=" + name
+                String address = HttpUtil.ipUrl + "Testt?name=" + name
                         + "&age=" + age
                         + "&sex=" + sex
-                        + "phone" + phone
-                        + "rephone" + rephone;
+                        + "&phone" + phone
+                        + "&rephone" + rephone;
                 HttpUtil.sedHttpRequest(address);
             }
         });

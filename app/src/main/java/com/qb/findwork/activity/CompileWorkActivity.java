@@ -108,7 +108,7 @@ public class CompileWorkActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void run() {
                 String rephone = ShareDate.getString("phone");
-                String address = HttpUtil.ipUrl + "Testt/&position=" + position
+                String address = HttpUtil.ipUrl + "Testt?position=" + position
                         + "&pay=" + pay
                         + "&sex=" + sex
                         + "&location" + location
