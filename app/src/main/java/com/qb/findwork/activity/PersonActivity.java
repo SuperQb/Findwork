@@ -71,6 +71,8 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     public void setPerson() {
+
+        phone = pref.getString("personPhone", "10086");
         name = pref.getString("personName", "兼职校园");
         age = pref.getString("personAge", "18");
         sex = pref.getString("personSex", "男");
@@ -90,8 +92,8 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.Relat_name:
                 Intent intentName = new Intent(PersonActivity.this, NameActivity.class);
-                overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
                 startActivity(intentName);
+                overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
                 break;
             case R.id.Relat_phone:
                 Intent intentPhone = new Intent(PersonActivity.this, PhoneActivity.class);
@@ -109,7 +111,9 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
                 WheelView wv = (WheelView) outerView.findViewById(R.id.wheel_wv);
                 wv.setOffset(2);
                 wv.setItems(Arrays.asList(PLANETS));
-                wv.setSeletion(20);
+                age = pref.getString("personAge", "18");
+                int intAge=Integer.parseInt(age);
+                wv.setSeletion(intAge-16);
                 wv.setOnWheelViewListener(new WheelView.OnWheelViewListener() {
                     @Override
                     public void onSelected(int selectedIndex, String item) {
@@ -125,6 +129,8 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
                     public void onClick(View v) {
                         mMaterialDialog.dismiss();
                         Log.i("test", age);
+                        per_age.setText(age);
+                        ShareDate.setString("personAge", age.toString(), PersonActivity.this);
 
                     }
                 });
@@ -151,7 +157,7 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String rephone = ShareDate.getString("phone");
+                String rephone = ShareDate.getString("phone",PersonActivity.this);
                 String address = HttpUtil.ipUrl + "Testt?name=" + name
                         + "&age=" + age
                         + "&sex=" + sex
@@ -164,8 +170,14 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        setPerson();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
-        HttpUtil.closeHttp();
+        //HttpUtil.closeHttp();
     }
 }

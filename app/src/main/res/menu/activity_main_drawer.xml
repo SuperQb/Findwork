@@ -5,35 +5,35 @@
         <item
             android:id="@+id/nav_main"
             android:icon="@drawable/ic_menu_camera"
-            android:title="全部" />
+            android:title="@string/menu_all" />
         <item
             android:id="@+id/nav_work"
             android:icon="@drawable/ic_menu_camera"
-            android:title="工作" />
+            android:title="@string/menu_work" />
         <item
             android:id="@+id/nav_man"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="人才" />
+            android:title="@string/menu_man" />
         <item
             android:id="@+id/nav_like"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="收藏" />
+            android:title="@string/menu_like" />
         <!--<item-->
             <!--android:id="@+id/nav_manage"-->
             <!--android:icon="@drawable/ic_menu_manage"-->
             <!--android:title="Tools" />-->
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/menu_system">
         <menu>
             <item
                 android:id="@+id/nav_setting"
                 android:icon="@drawable/ic_menu_share"
-                android:title="设置" />
+                android:title="@string/menu_setting" />
             <item
                 android:id="@+id/nav_about"
                 android:icon="@drawable/ic_menu_send"
-                android:title="关于" />
+                android:title="@string/menu_about" />
         </menu>
     </item>
 

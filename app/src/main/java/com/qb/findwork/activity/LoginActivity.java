@@ -84,7 +84,8 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
                 startActivity(intent);
                 break;
             case R.id.sign_in_button:
-                login();
+                //login();
+                logintest();
                 break;
             case R.id.tv_look:
                 Intent intent1 = new Intent(LoginActivity.this, MainActivity.class);
@@ -131,10 +132,39 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         }
     }
 
+
+
+    public void logintest() {
+        String phone = mPhoneView.getText().toString();
+        String password = mPasswordView.getText().toString();
+        if (TextUtils.isEmpty(phone) || TextUtils.isEmpty(password)) {
+            Toast.makeText(LoginActivity.this, "账号或密码不能为空", Toast.LENGTH_SHORT).show();
+        }else {
+
+
+            if (phone.equals("123")&&password.equals("123"))
+
+            {
+                editor = pref.edit();
+                editor.putBoolean("remember_password", true);
+                editor.putString("phone", phone);
+                editor.putString("password", password);
+                editor.putBoolean("islogin", true);
+                editor.commit();
+                Log.i("islogin", pref.getBoolean("remember_password", false) + "");
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(LoginActivity.this, "密码错误", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        HttpUtil.closeHttp();
+      //  HttpUtil.closeHttp();
     }
 }
 

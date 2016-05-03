@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">兼职校园</string>
+    <string name="title_activity_main">兼职</string>
+    <string name="settting_log_out">logout</string>
+</resources>

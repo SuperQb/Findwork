@@ -12,6 +12,7 @@ import com.google.gson.reflect.TypeToken;
 import com.qb.findwork.R;
 import com.qb.findwork.data.Person;
 import com.qb.findwork.data.Work;
+import com.qb.findwork.util.ChangeLanguage;
 import com.qb.findwork.util.HttpGetString;
 import com.qb.findwork.util.HttpGetWork;
 import com.qb.findwork.util.HttpUtil;
@@ -41,7 +42,8 @@ public class SplashActivity extends AppCompatActivity {
         } else {
             intent = new Intent(this, LoginActivity.class);
         }
-        HttpGetWork.getWork();
+        ChangeLanguage.getLanguage(SplashActivity.this);
+        //HttpGetWork.getWork();
         TimerTask task = new TimerTask() {
 
             @Override

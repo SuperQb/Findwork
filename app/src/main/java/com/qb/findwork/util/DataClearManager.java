@@ -3,6 +3,7 @@ package com.qb.findwork.util;
 
 import android.content.Context;
 import android.os.Environment;
+import android.util.Log;
 
 import java.io.File;
 
@@ -10,7 +11,8 @@ public class DataClearManager {
 
 
     //下载图片位置
-    private static final String imUrl = Environment.getExternalStorageDirectory().getAbsolutePath() + "/yylove/image";
+    private static final String imUrl = Environment.getExternalStorageDirectory().getAbsolutePath();
+            //+ "/yylove/image";
 
     /**
      * 清除本应用内部缓存
@@ -48,11 +50,11 @@ public class DataClearManager {
                 + context.getPackageName() + "/shared_prefs"));
     }
 
-    public static double getSharedSize (Context context) {
-        return getDirSize(new File("/data/data/"
-                + context.getPackageName() + "/shared_prefs"));
+    public static String getSharedSize (Context context) {
+        String size=String.format("%.1f",getDirSize(new File("/data/data/"
+                + context.getPackageName() + "/shared_prefs")));
+        return size;
     }
-
     /**
      * 清除本应用数据库
      * @param context

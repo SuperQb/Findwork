@@ -107,7 +107,7 @@ public class CompileWorkActivity extends AppCompatActivity implements View.OnCli
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String rephone = ShareDate.getString("phone");
+                String rephone = ShareDate.getString("phone",CompileWorkActivity.this);
                 String address = HttpUtil.ipUrl + "Testt?position=" + position
                         + "&pay=" + pay
                         + "&sex=" + sex
@@ -126,12 +126,14 @@ public class CompileWorkActivity extends AppCompatActivity implements View.OnCli
 /*
     基于android平台下的兼职app。
         项目分为服务器和客户端两个部分。
-            服务器只要负责数据库的增删改查和传输数据，此项目侧重点在android服务端，服务器端不做过多解释。
-         android端主要分四大模块：兼职模块、个人资料模块、账号登陆注册模块、本地设置模块。
-         兼职模块：可以查看所有兼职信息，并且可以分类查看工作招聘和个人求职。在查看详细页面中，通过按键给发送人打电话
-         个人资料模块：分为头像、昵称、性别、电话。并且可以设置，从而与服务器同步。在头像设置中可以调用系统相机拍照或系统相册选择图片，并且可以进行裁剪。
-         账号登陆注册模块：短信验证码注册，本地保存密码
-         本地设置模块：网络设置（非wifi环境下不下载图片、查看缓存并清除缓存、app英文与中文的转换
+            服务器主要负责数据库的增删改查和传输数据，各种请求验证。
+        android端主要分四大模块：兼职模块、个人资料模块、账号登陆注册模块、本地设置模块。
+            兼职模块：可以查看所有兼职信息，并且可以分类查看工作招聘和个人求职。在查看详细页面中，通过按键给发送人打电话
+            个人资料模块：分为头像、昵称、性别、电话。并且可以设置，从而与服务器同步。在头像设置中可以调用系统相机拍照或系统相册选择图片，并且可以进行裁剪。
+            账号登陆注册模块：短信验证码注册，本地保存密码
+            本地设置模块：网络设置（非wifi环境下不下载图片、查看缓存并清除缓存、app英文与中文的转换
+
+         问题：图片下载和上传
 
 
  */

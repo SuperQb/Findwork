@@ -25,7 +25,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:text="招聘"
+            android:text="@string/com_em_title"
             android:textColor="#ffffff"
             android:textSize="25sp" />
 
@@ -36,7 +36,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
             android:gravity="center"
-            android:text="发布"
+            android:text="@string/com_em_push"
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:id="@+id/compile_employ_push"/>
@@ -72,7 +72,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="53dp"
                     android:background="#ffffff"
-                    android:hint="理想职位"
+                    android:hint="@string/com_em_hope_posotion"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textSize="20sp" />
@@ -107,7 +107,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="53dp"
                     android:background="#ffffff"
-                    android:hint="理想薪资"
+                    android:hint="@string/com_em_pay"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textSize="20sp" />
@@ -140,7 +140,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="53dp"
                     android:background="#ffffff"
-                    android:hint="性别"
+                    android:hint="@string/com_em_sex"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textSize="20sp" />
@@ -174,7 +174,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="53dp"
                     android:background="#ffffff"
-                    android:hint="理想工作地点"
+                    android:hint="@string/com_em_location"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textSize="20sp" />
@@ -207,7 +207,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="53dp"
                     android:background="#ffffff"
-                    android:hint="联系电话"
+                    android:hint="@string/com_em_phone"
                     android:inputType="number"
                     android:maxLines="1"
                     android:singleLine="true"
@@ -234,7 +234,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:text="介绍："
+                    android:text="@string/com_em_tx_introduce"
                     android:textSize="15sp" />
 
                 <EditText
@@ -246,7 +246,7 @@
                     android:layout_toRightOf="@+id/tv_work_more_title_introduce"
                     android:background="#ffffff"
                     android:gravity="top"
-                    android:hint="自我介绍"
+                    android:hint="@string/com_em_introduce"
                     android:lines="6"
                     android:maxLength="80"
                     android:maxLines="7"
@@ -274,7 +274,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:text="内容："
+                    android:text="@string/com_em_tx_content"
                     android:textSize="15sp" />
 
                 <EditText
@@ -286,7 +286,7 @@
                     android:layout_toRightOf="@+id/tv_work_more_title_contente"
                     android:background="#ffffff"
                     android:gravity="top"
-                    android:hint="理想工作内容"
+                    android:hint="@string/com_em_content"
                     android:lines="6"
                     android:maxLength="80"
                     android:maxLines="7"
@@ -314,7 +314,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:text="要求："
+                    android:text="@string/com_em_tx_required"
                     android:textSize="15sp" />
 
                 <EditText
@@ -326,7 +326,7 @@
                     android:layout_toRightOf="@+id/tv_work_more_title_required"
                     android:background="#ffffff"
                     android:gravity="top"
-                    android:hint="个人要求"
+                    android:hint="@string/com_em_required"
                     android:lines="6"
                     android:maxLength="80"
                     android:maxLines="7"

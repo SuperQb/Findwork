@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.gson.Gson;
@@ -29,9 +30,11 @@ import com.qb.findwork.fragment.MainFragment;
 import com.qb.findwork.fragment.ManFragment;
 import com.qb.findwork.fragment.WorkFragment;
 import com.qb.findwork.util.ActivityManagers;
+import com.qb.findwork.util.ChangeLanguage;
 import com.qb.findwork.util.HttpGetPerson;
 import com.qb.findwork.util.HttpGetString;
 import com.qb.findwork.util.HttpUtil;
+import com.qb.findwork.util.ShareDate;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity
     private View actionA;
     private Toolbar toolbar;
     private boolean isLogin = false;
+    private TextView header_name,header_phone;
     //private SharedPreferences.Editor editor;
 
 
@@ -67,13 +71,17 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         fragmentManager = getSupportFragmentManager();
         NavigationView nv = (NavigationView) findViewById(R.id.nav_view);
+
         //View headerView = nv.getHeaderView(0);
         linearlayoutPerson = (LinearLayout) nv.findViewById(R.id.person);
+        header_name= (TextView) nv.findViewById(R.id.header_name);
+        header_phone= (TextView) nv.findViewById(R.id.header_phone);
+        setHeader();
         linearlayoutPerson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent;
-                isLogin = pref.getBoolean("remember_password", false);
+                isLogin = pref.getBoolean("islogin", false);
                 if (isLogin == true) {
                     intent = new Intent(MainActivity.this, PersonActivity.class);
                 }
@@ -94,6 +102,7 @@ public class MainActivity extends AppCompatActivity
 
     public void init() {
 
+        ChangeLanguage.getLanguage(MainActivity.this);
         ActivityManagers.addActivity(this);
         pref = PreferenceManager.getDefaultSharedPreferences(this);
         floatingActionsMenu = (FloatingActionsMenu) findViewById(R.id.multiple_actions);
@@ -117,7 +126,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
         //获取个人资料数据
-        HttpGetPerson.getPerson();
+        //HttpGetPerson.getPerson();
     }
 
     @Override
@@ -185,6 +194,31 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    public  void  setHeader(){
+
+        String name=ShareDate.getString("personName",MainActivity.this);
+
+        if (!name.equals("")&&name!=null)
+        {
+            header_name.setText(name);
+        }
+        String phone=ShareDate.getString("personPhone",MainActivity.this);
+
+        if (!phone.equals("")&&name!=null)
+        {
+            header_phone.setText(phone);
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        ChangeLanguage.getLanguage(MainActivity.this);
+        setHeader();
+        Log.i("test","onRestart");
     }
 
     @Override

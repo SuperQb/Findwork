@@ -113,7 +113,7 @@ public class CompileEmployActivity extends AppCompatActivity implements View.OnC
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String rephone = ShareDate.getString("phone");
+                String rephone = ShareDate.getString("phone",CompileEmployActivity.this);
                 String address = HttpUtil.ipUrl + "Testt?position=" + position
                         + "&pay=" + pay
                         + "&sex=" + sex

@@ -171,4 +171,64 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
+
+    <string name="settting_log_out">退出登录</string>
+    <string name="FloatingActionButton_work">招聘</string>
+    <string name="FloatingActionButton_man">求职</string>
+    <string name="menu_all">全部</string>
+    <string name="menu_work">工作</string>
+    <string name="menu_man">人才</string>
+    <string name="menu_like">收藏</string>
+    <string name="menu_system">系统</string>
+    <string name="menu_setting">设置</string>
+    <string name="menu_about">关于</string>
+
+
+    <!--compile_employ-->
+
+    <string name="com_em_title">招聘</string>
+    <string name="com_em_push">发布</string>
+    <string name="com_em_hope_posotion">理想职位</string>
+    <string name="com_em_pay">理想薪资</string>
+    <string name="com_em_sex">性别</string>
+    <string name="com_em_location">理想工作地点</string>
+    <string name="com_em_phone">联系电话</string>
+    <string name="com_em_tx_introduce">介绍：</string>
+    <string name="com_em_introduce">自我介绍</string>
+    <string name="com_em_tx_content">内容：</string>
+    <string name="com_em_content">理想工作内容</string>
+    <string name="com_em_tx_required">要求：</string>
+    <string name="com_em_required">个人要求</string>
+
+
+    <!--compile_work-->
+    <string name="com_work_title">招聘</string>
+    <string name="com_work_push">发布</string>
+    <string name="com_work_posotion">职位</string>
+    <string name="com_work_pay">薪资</string>
+    <string name="com_work_sex">性别要求</string>
+    <string name="com_work_location">工作地点</string>
+    <string name="com_work_phone">联系电话</string>
+    <string name="com_work_tx_introduce">介绍：</string>
+    <string name="com_work_introduce">公司介绍</string>
+    <string name="com_work_tx_content">内容：</string>
+    <string name="com_work_content">工作内容</string>
+    <string name="com_work_tx_required">要求：</string>
+    <string name="com_work_required">工作要求</string>
+
+    <!--languageActivity-->
+
+    <string name="lan_ac_tile">语言</string>
+    <string name="lan_ac_zh">中文</string>
+    <string name="lan_ac_en">英文</string>
+    <string name="lan_ac_change">更改</string>
+
+    <!--loginActivity-->
+    <string name="lan_login_tile">登录</string>
+    <string name="lan_login_register">注册</string>
+    <string name="lan_login_phone">手机号</string>
+    <string name="lan_login_key">密码</string>
+    <string name="lan_login_login">登录</string>
+    <string name="lan_login_skip">随便看看</string>
+
 </resources>
