@@ -34,7 +34,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         pref = PreferenceManager.getDefaultSharedPreferences(this);
-        idLogin = pref.getBoolean("remember_password", false);
+        idLogin = pref.getBoolean("islogin", false);
         Timer time = new Timer();
 
         if (idLogin == true) {

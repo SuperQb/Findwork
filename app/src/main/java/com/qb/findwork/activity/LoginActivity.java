@@ -1,7 +1,9 @@
 package com.qb.findwork.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -35,6 +37,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     boolean isRemember, isLogin;
     private TextView tv_look;
     private String registerPhone;
+    private ProgressDialog mPd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 
 
     public void init() {
+        mPd = new ProgressDialog(this);
         pref = PreferenceManager.getDefaultSharedPreferences(this);
         isRemember = pref.getBoolean("remember_password", false);
         isLogin = pref.getBoolean("islogin", false);
@@ -84,8 +88,11 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
                 startActivity(intent);
                 break;
             case R.id.sign_in_button:
-                //login();
-                logintest();
+                // login();
+                String phone = mPhoneView.getText().toString();
+                String password = mPasswordView.getText().toString();
+                new LAsync().execute(phone, password);
+                //logintest();
                 break;
             case R.id.tv_look:
                 Intent intent1 = new Intent(LoginActivity.this, MainActivity.class);
@@ -104,16 +111,16 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         String password = mPasswordView.getText().toString();
         if (TextUtils.isEmpty(phone) || TextUtils.isEmpty(password)) {
             Toast.makeText(LoginActivity.this, "账号或密码不能为空", Toast.LENGTH_SHORT).show();
-        }else {
+        } else {
+
             // 发送账号密码，服务器进行查询，返回值1、登陆成功，2、登陆失败（密码错误，无账号）
             //线程同步handle
             String address = HttpUtil.ipUrl + "Testt?username=" + phone + "&userpass=" + password;
             HttpURLConnection connection = HttpUtil.sedHttpRequest(address);
-            //发送数据
-            //接收数据（是否注册成功，检查重复）
+
             String jsonData = HttpGetString.HttpgetString(connection);
             Log.i("jsonData", jsonData);
-             if (jsonData.equals("OK"))
+            if (jsonData.equals("OK"))
 
             {
                 editor = pref.edit();
@@ -133,16 +140,15 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     }
 
 
-
     public void logintest() {
         String phone = mPhoneView.getText().toString();
         String password = mPasswordView.getText().toString();
         if (TextUtils.isEmpty(phone) || TextUtils.isEmpty(password)) {
             Toast.makeText(LoginActivity.this, "账号或密码不能为空", Toast.LENGTH_SHORT).show();
-        }else {
+        } else {
 
 
-            if (phone.equals("123")&&password.equals("123"))
+            if (phone.equals("123") && password.equals("123"))
 
             {
                 editor = pref.edit();
@@ -164,7 +170,55 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-      //  HttpUtil.closeHttp();
+        //  HttpUtil.closeHttp();
+    }
+
+    private class LAsync extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute() {
+            mPd.show();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            //传入手机号和密码
+            String phone = params[0];
+            String password = params[1];
+
+            String address = HttpUtil.ipUrl + "Testt?username=" + phone + "&userpass=" + password;
+            HttpURLConnection connection = HttpUtil.sedHttpRequest(address);
+            String jsonData = HttpGetString.HttpgetString(connection);
+            Log.i("jsonData", jsonData);
+            if (jsonData.equals("OK"))
+
+            {
+                editor = pref.edit();
+                editor.putBoolean("remember_password", true);
+                editor.putString("phone", phone);
+                editor.putString("password", password);
+                editor.putBoolean("islogin", true);
+                editor.commit();
+                Log.i("islogin", pref.getBoolean("remember_password", false) + "");
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+                return "ok";
+            }
+            return "no";
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+
+            mPd.dismiss();
+            if (s.equals("no")) {
+                Toast.makeText(LoginActivity.this, "密码错误", Toast.LENGTH_SHORT).show();
+
+            }
+        }
+
     }
 }
 

@@ -4,7 +4,12 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,8 +25,12 @@ import com.qb.findwork.util.DataClearManager;
 import com.qb.findwork.util.HttpGetString;
 import com.qb.findwork.util.HttpUtil;
 import com.qb.findwork.util.ShareDate;
+import com.qb.findwork.view.CircleView;
 import com.qb.findwork.view.WheelView;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.util.Arrays;
 
@@ -31,7 +40,6 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
 
     private static final String[] PLANETS = new String[]{"16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"};
     private RelativeLayout Relat_name, Relat_sex, Relat_age, Relat_phone;
-    private ImageView per_photo;
     private TextView per_name, per_sex, per_age, per_phone;
     private ImageView back;
 
@@ -39,7 +47,14 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
     private SharedPreferences pref;
     private String name, age, sex, phone;
     private TextView perSave;
+    private CircleView per_photo;
 
+
+    public static final int TAKE_PHOTO = 1;
+
+    public static final int CROP_PHOTO = 2;
+
+    private Uri imageUri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +69,7 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
         Relat_sex = (RelativeLayout) findViewById(R.id.Relat_sex);
         Relat_age = (RelativeLayout) findViewById(R.id.Relat_age);
         Relat_phone = (RelativeLayout) findViewById(R.id.Relat_phone);
-        per_photo = (ImageView) findViewById(R.id.per_photo);
+        per_photo = (CircleView) findViewById(R.id.per_photo);
         per_name = (TextView) findViewById(R.id.per_name);
         per_sex = (TextView) findViewById(R.id.per_sex);
         per_age = (TextView) findViewById(R.id.per_age);
@@ -67,6 +82,7 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
         Relat_age.setOnClickListener(this);
         back.setOnClickListener(this);
         perSave.setOnClickListener(this);
+        per_photo.setOnClickListener(this);
         setPerson();
     }
 
@@ -146,6 +162,27 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.person_save:
                 sendPerson();
+
+                break;
+            case R.id.per_photo:
+                File outputImage = new File(Environment.getExternalStorageDirectory(),
+                        "output_image.jpg");
+                try {
+                    if (outputImage.exists()) {
+                        outputImage.delete();
+                    }
+                    outputImage.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                imageUri = Uri.fromFile(outputImage);
+                Intent intent = new Intent("android.intent.action.GET_CONTENT");
+                intent.setType("image/*");
+                intent.putExtra("crop", true);
+                intent.putExtra("scale", true);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                startActivityForResult(intent, CROP_PHOTO);
+                break;
             default:
                 break;
 
@@ -157,15 +194,18 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String rephone = ShareDate.getString("phone",PersonActivity.this);
-                String address = HttpUtil.ipUrl + "Testt?name=" + name
+                String registerPhone = ShareDate.getString("phone",PersonActivity.this);
+                String address = HttpUtil.ipUrl + "SavePerson?registerPhone=" + registerPhone
+                        + "&phone=" + phone
+                        + "&name=" + name
+                        + "&icon=" + "icon"
                         + "&age=" + age
-                        + "&sex=" + sex
-                        + "&phone" + phone
-                        + "&rephone" + rephone;
+                        + "&sex=" + sex;
+                //String address="192.168.0.4:8080/Test/SavePerson?registerPhone=15202902579&phone=15202902579&name=personna&icon=icon&age=22&sex=man";
                 HttpUtil.sedHttpRequest(address);
+                finish();
             }
-        });
+        }).start();
 
     }
 
@@ -179,5 +219,34 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
     protected void onDestroy() {
         super.onDestroy();
         //HttpUtil.closeHttp();
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case TAKE_PHOTO:
+                if (resultCode == RESULT_OK) {
+                    Intent intent = new Intent("com.android.camera.action.CROP");
+                    intent.setDataAndType(imageUri, "image/*");
+                    intent.putExtra("scale", true);
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                    startActivityForResult(intent, CROP_PHOTO);
+                }
+                break;
+            case CROP_PHOTO:
+                if (resultCode == RESULT_OK) {
+                    try {
+                        Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver()
+                                .openInputStream(imageUri));
+                        per_photo.setImageBitmap(bitmap);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -107,19 +107,20 @@ public class CompileWorkActivity extends AppCompatActivity implements View.OnCli
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String rephone = ShareDate.getString("phone",CompileWorkActivity.this);
-                String address = HttpUtil.ipUrl + "Testt?position=" + position
+                String registerPhone = ShareDate.getString("phone",CompileWorkActivity.this);
+                String address = HttpUtil.ipUrl + "SaveWork?position=" + position
                         + "&pay=" + pay
                         + "&sex=" + sex
-                        + "&location" + location
-                        + "&introduce" + introduce
-                        + "&content" + content
-                        + "&required" + required
-                        + "&phone" + phone
-                        + "&rephone" + rephone;
+                        + "&location=" + location
+                        + "&introduce=" + introduce
+                        + "&content=" + content
+                        + "&required=" + required
+                        + "&phone=" + phone
+                        + "&registerPhone=" + registerPhone
+                        +"&type="+"1";
                 HttpUtil.sedHttpRequest(address);
             }
-        });
+        }).start();
 
     }
 }
