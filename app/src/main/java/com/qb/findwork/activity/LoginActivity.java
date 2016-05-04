@@ -189,24 +189,28 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 
             String address = HttpUtil.ipUrl + "Testt?username=" + phone + "&userpass=" + password;
             HttpURLConnection connection = HttpUtil.sedHttpRequest(address);
-            String jsonData = HttpGetString.HttpgetString(connection);
-            Log.i("jsonData", jsonData);
-            if (jsonData.equals("OK"))
+            if (connection != null) {
+                String jsonData = HttpGetString.HttpgetString(connection);
+                Log.i("jsonData", jsonData);
+                if (jsonData.equals("OK"))
 
-            {
-                editor = pref.edit();
-                editor.putBoolean("remember_password", true);
-                editor.putString("phone", phone);
-                editor.putString("password", password);
-                editor.putBoolean("islogin", true);
-                editor.commit();
-                Log.i("islogin", pref.getBoolean("remember_password", false) + "");
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-                return "ok";
+                {
+                    editor = pref.edit();
+                    editor.putBoolean("remember_password", true);
+                    editor.putString("phone", phone);
+                    editor.putString("password", password);
+                    editor.putBoolean("islogin", true);
+                    editor.commit();
+                    Log.i("islogin", pref.getBoolean("remember_password", false) + "");
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return "ok";
+                }
+
+                return "no";
             }
-            return "no";
+            return "net";
         }
 
         @Override
@@ -215,7 +219,8 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
             mPd.dismiss();
             if (s.equals("no")) {
                 Toast.makeText(LoginActivity.this, "密码错误", Toast.LENGTH_SHORT).show();
-
+            } else if (s.equals("net")) {
+                Toast.makeText(LoginActivity.this, "网络错误", Toast.LENGTH_SHORT).show();
             }
         }
 

@@ -1,5 +1,8 @@
 package com.qb.findwork.activity;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -36,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Button get_code;
     private final String appKEY = "1205e0cc1f874";
     private final String appSecret = "6031c73fbee92a4a53f6a3c3def59792";
+    private ProgressDialog mPd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     public void init() {
+        mPd = new ProgressDialog(this);
         SMSSDK.initSDK(this, appKEY, appSecret);
         register_back = (ImageView) findViewById(R.id.register_back);
         button_register = (Button) findViewById(R.id.button_register);
@@ -70,15 +75,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 getCode();
                 break;
             case R.id.button_register:
-
-
                 if (isAllIn()) {
-
-                register();
+                    register();
+                    new LAsync().execute(userpass, username);
+                    //
                 }
-
-                    break;
-
+                break;
             default:
                 break;
         }
@@ -88,8 +90,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         //发送手机号、密码，获取结果：OK成功，NO失败
         userpass = activity_register_password.getText().toString();
         username = activity_register_phone.getText().toString();
-        Log.i("test",userpass);
-        Log.i("test",username);
+        Log.i("test", userpass);
+        Log.i("test", username);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -100,8 +102,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 //接收数据（是否注册成功，检查重复）
                 String jsonData = HttpGetString.HttpgetString(connection);
                 Log.i("jsonData", jsonData);
-                if(jsonData.equals("OK"))
-                {
+                if (jsonData.equals("OK")) {
                     finish();
                 }
                 //parseJSONWithJSONObject(jsonData);
@@ -161,7 +162,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     /**
      * 初始化短信SDK
-
      */
     private void initSDK() {
 
@@ -200,7 +200,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 Toast.LENGTH_SHORT).show();
 
                         //数据发送发送服务器，进行注册
-                       // register();
+                        // register();
 
                     } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
                         Toast.makeText(getApplicationContext(), "验证码已经发送",
@@ -222,16 +222,54 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
 
+    private class LAsync extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute() {
+            mPd.show();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
 
 
+            Log.i("test", userpass);
+            Log.i("test", username);
+            String phone = params[0];
+            String password = params[1];
 
+            String address = HttpUtil.ipUrl + "Testt?username=" + phone + "&userpass=" + password;
+            HttpURLConnection connection = HttpUtil.sedHttpRequest(address);
+            //发送数据
+            //接收数据（是否注册成功，检查重复）
+            if (connection != null) {
+                String jsonData = HttpGetString.HttpgetString(connection);
+                Log.i("jsonData", jsonData);
+                if (jsonData.equals("OK")) {
+                    finish();
+                    return "ok";
+                }
+                return "no";
 
+            }
 
+            return "net";
+        }
 
+        @Override
+        protected void onPostExecute(String s) {
 
+            mPd.dismiss();
+            if (s.equals("no")) {
+                Toast.makeText(RegisterActivity.this, "注册失败", Toast.LENGTH_SHORT).show();
 
+            } else if (s.equals("net")) {
+                Toast.makeText(RegisterActivity.this, "网络错误", Toast.LENGTH_SHORT).show();
+            }
 
+        }
 
+    }
 
 
 }

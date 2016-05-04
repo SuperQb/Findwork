@@ -43,7 +43,7 @@
             android:layout_height="23dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
-            android:src="@drawable/ic_account_circle_black_24dp" />
+            android:src="@drawable/ic_language_black_24dp" />
 
         <TextView
             android:id="@+id/per_name"
@@ -82,7 +82,7 @@
             android:layout_height="23dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
-            android:src="@drawable/ic_wc_black_24dp" />
+            android:src="@drawable/ic_language_black_24dp" />
 
         <TextView
             android:id="@+id/per_sex"

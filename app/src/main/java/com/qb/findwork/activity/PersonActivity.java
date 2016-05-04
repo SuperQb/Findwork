@@ -201,7 +201,6 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
                         + "&icon=" + "icon"
                         + "&age=" + age
                         + "&sex=" + sex;
-                //String address="192.168.0.4:8080/Test/SavePerson?registerPhone=15202902579&phone=15202902579&name=personna&icon=icon&age=22&sex=man";
                 HttpUtil.sedHttpRequest(address);
                 finish();
             }

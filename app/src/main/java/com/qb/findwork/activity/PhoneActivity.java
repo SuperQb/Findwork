@@ -14,6 +14,7 @@ public class PhoneActivity extends AppCompatActivity implements View.OnClickList
     private ImageView phone_back;
     private EditText et_phone;
     private TextView phone_save;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,16 +24,14 @@ public class PhoneActivity extends AppCompatActivity implements View.OnClickList
 
     public void init() {
 
-        et_phone= (EditText) findViewById(R.id.activity_per_phone);
-        phone_back= (ImageView) findViewById(R.id.phone_back);
-        phone_save= (TextView) findViewById(R.id.phone_save);
+        et_phone = (EditText) findViewById(R.id.activity_per_phone);
+        phone_back = (ImageView) findViewById(R.id.phone_back);
+        phone_save = (TextView) findViewById(R.id.phone_save);
         phone_back.setOnClickListener(this);
         phone_save.setOnClickListener(this);
-        String phone=ShareDate.getString("personPhone",PhoneActivity.this);
+        String phone = ShareDate.getString("personPhone", PhoneActivity.this);
         et_phone.setText(phone);
     }
-
-
 
 
     public void onClick(View v) {
@@ -42,9 +41,8 @@ public class PhoneActivity extends AppCompatActivity implements View.OnClickList
                 overridePendingTransition(R.anim.base_slide_remain, R.anim.base_slide_right_out);
                 break;
             case R.id.phone_save:
-                String phone =et_phone.getText().toString();
+                String phone = et_phone.getText().toString();
                 ShareDate.setString("personPhone", phone, PhoneActivity.this);
-
                 finish();
                 overridePendingTransition(R.anim.base_slide_remain, R.anim.base_slide_right_out);
                 break;

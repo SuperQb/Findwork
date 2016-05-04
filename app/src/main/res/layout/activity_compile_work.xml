@@ -62,7 +62,7 @@
                 android:layout_height="23dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
-                android:src="@drawable/ic_account_circle_black_24dp" />
+                android:src="@drawable/ic_person_pin_black_24dp" />
 
             <EditText
                 android:id="@+id/compile_work_position"
@@ -97,7 +97,7 @@
                 android:layout_height="23dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
-                android:src="@drawable/ic_wc_black_24dp" />
+                android:src="@drawable/ic_local_atm_black_24dp" />
 
             <EditText
                 android:id="@+id/compile_work_pay"
@@ -130,7 +130,7 @@
                 android:layout_height="23dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
-                android:src="@drawable/ic_account_circle_black_24dp" />
+                android:src="@drawable/ic_wc_black_24dp" />
 
             <EditText
                 android:id="@+id/compile_work_sex"
@@ -164,7 +164,7 @@
                 android:layout_height="23dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
-                android:src="@drawable/ic_account_circle_black_24dp" />
+                android:src="@drawable/ic_place_black_24dp" />
 
             <EditText
                 android:id="@+id/compile_work_location"
@@ -196,7 +196,7 @@
                 android:layout_height="23dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
-                android:src="@drawable/ic_wc_black_24dp" />
+                android:src="@drawable/ic_phone_iphone_black_24dp" />
 
             <EditText
                 android:id="@+id/compile_work_phone"
