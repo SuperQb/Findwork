@@ -8,9 +8,73 @@
 		<description></description>
 		<servlet-class>com.cn.find.Testt</servlet-class>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>Testt2</servlet-name>
+		<display-name>Testt2</display-name>
+		<description></description>
+		<servlet-class>com.cn.find.Testt2</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Getwork</servlet-name>
+		<display-name>Getwork</display-name>
+		<description></description>
+		<servlet-class>com.cn.find.Getwork</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>SaveAccon</servlet-name>
+		<display-name>SaveAccon</display-name>
+		<description></description>
+		<servlet-class>com.cn.find.SaveAccon</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Getperson</servlet-name>
+		<display-name>Getperson</display-name>
+		<description></description>
+		<servlet-class>com.cn.find.Getperson</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>SavePerson</servlet-name>
+		<display-name>SavePerson</display-name>
+		<description></description>
+		<servlet-class>com.cn.find.SavePerson</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>SaveWork</servlet-name>
+		<display-name>SaveWork</display-name>
+		<description></description>
+		<servlet-class>com.cn.find.SaveWork</servlet-class>
+	</servlet>
+	
 	<servlet-mapping>
 		<servlet-name>Testt</servlet-name>
 		<url-pattern>/Testt</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Testt2</servlet-name>
+		<url-pattern>/Testt2</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Getwork</servlet-name>
+		<url-pattern>/Getwork</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>SaveAccon</servlet-name>
+		<url-pattern>/SaveAccon</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Getperson</servlet-name>
+		<url-pattern>/Getperson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SavePerson</servlet-name>
+		<url-pattern>/SavePerson</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SaveWork</servlet-name>
+		<url-pattern>/SaveWork</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

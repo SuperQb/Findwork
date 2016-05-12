@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.qb.findwork.R;
 import com.qb.findwork.adapter.RecyclerViewAdapter;
+import com.qb.findwork.data.ListData;
 import com.qb.findwork.data.UserLogin;
 import com.qb.findwork.data.Work;
 import com.qb.findwork.data.Workdata;
@@ -29,7 +30,7 @@ import java.util.List;
 public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private RecyclerView recyclerView;
-    private List<Workdata> workdatas;
+    private List<Work> workdatas;
     private RecyclerViewAdapter adapter;
     private SwipeRefreshLayout mSwipeLayout;
 
@@ -48,7 +49,7 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView_main);
         initPersonData();
-        adapter = new RecyclerViewAdapter(workdatas, getActivity());
+        adapter = new RecyclerViewAdapter(ListData.workList, getActivity());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -61,11 +62,12 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
 
     private void initPersonData() {
-        workdatas = new ArrayList<>();
-        workdatas.add(new Workdata("测试一", "王先生", R.mipmap.ulinxinru));
-        workdatas.add(new Workdata("测试二", "王先生", R.mipmap.ulinxinru));
-        workdatas.add(new Workdata("测试三", "王先生", R.mipmap.ulinxinru));
-        workdatas.add(new Workdata("测试四", "王先生", R.mipmap.ulinxinru));
+
+       // workdatas = new ArrayList<>();
+//        workdatas.add(new Workdata("测试一", "王先生", R.mipmap.ulinxinru));
+//        workdatas.add(new Workdata("测试二", "王先生", R.mipmap.ulinxinru));
+//        workdatas.add(new Workdata("测试三", "王先生", R.mipmap.ulinxinru));
+//        workdatas.add(new Workdata("测试四", "王先生", R.mipmap.ulinxinru));
     }
 
 

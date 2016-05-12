@@ -43,7 +43,7 @@ public class SplashActivity extends AppCompatActivity {
             intent = new Intent(this, LoginActivity.class);
         }
         ChangeLanguage.getLanguage(SplashActivity.this);
-        //HttpGetWork.getWork();
+        HttpGetWork.getWork();
         TimerTask task = new TimerTask() {
 
             @Override

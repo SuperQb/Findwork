@@ -43,7 +43,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private  SharedPreferences pref;
+    private SharedPreferences pref;
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
     private LinearLayout linearlayoutPerson;
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity
     private View actionA;
     private Toolbar toolbar;
     private boolean isLogin = false;
-    private TextView header_name,header_phone;
+    private TextView header_name, header_phone;
     //private SharedPreferences.Editor editor;
 
 
@@ -74,8 +74,8 @@ public class MainActivity extends AppCompatActivity
 
         //View headerView = nv.getHeaderView(0);
         linearlayoutPerson = (LinearLayout) nv.findViewById(R.id.person);
-        header_name= (TextView) nv.findViewById(R.id.header_name);
-        header_phone= (TextView) nv.findViewById(R.id.header_phone);
+        header_name = (TextView) nv.findViewById(R.id.header_name);
+        header_phone = (TextView) nv.findViewById(R.id.header_phone);
         setHeader();
         linearlayoutPerson.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,9 +84,8 @@ public class MainActivity extends AppCompatActivity
                 isLogin = pref.getBoolean("islogin", false);
                 if (isLogin == true) {
                     intent = new Intent(MainActivity.this, PersonActivity.class);
-                }
-                else{
-                    intent=new Intent(MainActivity.this,LoginActivity.class);
+                } else {
+                    intent = new Intent(MainActivity.this, LoginActivity.class);
                 }
                 startActivity(intent);
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -112,21 +111,33 @@ public class MainActivity extends AppCompatActivity
         actionB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                floatingActionsMenu.toggle();
-                Intent intent = new Intent(MainActivity.this, CompileWorkActivity.class);
+
+                isLogin = pref.getBoolean("remember_password", false);
+                Intent intent = null;
+                if (isLogin) {
+                    intent= new Intent(MainActivity.this, CompileWorkActivity.class);
+
+                }
+                else{
+                    intent= new Intent(MainActivity.this,LoginActivity.class);
+                }
                 startActivity(intent);
+                floatingActionsMenu.toggle();
             }
         });
         actionA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CompileEmployActivity.class);
+                isLogin = pref.getBoolean("remember_password", false);
+                Intent intent = null;
+
+                 intent = new Intent(MainActivity.this, CompileEmployActivity.class);
                 startActivity(intent);
                 floatingActionsMenu.toggle();
             }
         });
         //获取个人资料数据
-        //HttpGetPerson.getPerson();
+        //HttpGetPerson.getPerson(MainActivity.this);
     }
 
     @Override
@@ -197,18 +208,16 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    public  void  setHeader(){
+    public void setHeader() {
 
-        String name=ShareDate.getString("personName",MainActivity.this);
+        String name = ShareDate.getString("personName", MainActivity.this);
 
-        if (!name.equals("")&&name!=null)
-        {
+        if (!name.equals("") && name != null) {
             header_name.setText(name);
         }
-        String phone=ShareDate.getString("personPhone",MainActivity.this);
+        String phone = ShareDate.getString("personPhone", MainActivity.this);
 
-        if (!phone.equals("")&&name!=null)
-        {
+        if (!phone.equals("") && name != null) {
             header_phone.setText(phone);
         }
     }
@@ -218,7 +227,7 @@ public class MainActivity extends AppCompatActivity
         super.onRestart();
         ChangeLanguage.getLanguage(MainActivity.this);
         setHeader();
-        Log.i("test","onRestart");
+        Log.i("test", "onRestart");
     }
 
     @Override

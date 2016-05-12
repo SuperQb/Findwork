@@ -25,9 +25,10 @@ public class CompileEmployActivity extends AppCompatActivity implements View.OnC
     private EditText employContent;
     private EditText employRequired;
     private EditText employPhone;
+    private EditText employLinkMan;
 
 
-    private String position, pay, sex, location, introduce, content, required, phone;
+    private String position, pay, sex, location, introduce, content, required, phone,linkman;
 
 
     @Override
@@ -47,10 +48,9 @@ public class CompileEmployActivity extends AppCompatActivity implements View.OnC
         employContent = (EditText) findViewById(R.id.compile_tv_employ_more_content);
         employRequired = (EditText) findViewById(R.id.compile_tv_employ_more_required);
         employPhone = (EditText) findViewById(R.id.compile_employ_phone);
-
         employBack = (ImageView) findViewById(R.id.compile_employ_back);
         employPUsh = (TextView) findViewById(R.id.compile_employ_push);
-
+        employLinkMan= (EditText) findViewById(R.id.compile_employ_linkman);
 
         employPUsh.setOnClickListener(this);
         employBack.setOnClickListener(this);
@@ -82,14 +82,14 @@ public class CompileEmployActivity extends AppCompatActivity implements View.OnC
         Log.i("employLocation", employLocation.getText().toString());
         Log.i("employRequired", employRequired.getText().toString());
         Log.i("employPhone", employPhone.getText().toString());
-
+        Log.i("employLinkMan", employLinkMan.getText().toString());
         pushEm();
     }
 
     public boolean idAllIn() {
         getText();
 
-        if (position.isEmpty() || pay.isEmpty() || sex.isEmpty() || location.isEmpty() || introduce.isEmpty() || content.isEmpty() || required.isEmpty() || phone.isEmpty()) {
+        if (position.isEmpty() || pay.isEmpty() || sex.isEmpty() || location.isEmpty() || introduce.isEmpty() || content.isEmpty() || required.isEmpty() || phone.isEmpty()||linkman.isEmpty()) {
             Log.i("all", "请填写完整");
             return false;
 
@@ -108,6 +108,7 @@ public class CompileEmployActivity extends AppCompatActivity implements View.OnC
         content = employContent.getText().toString();
         required = employRequired.getText().toString();
         phone = employPhone.getText().toString();
+        linkman=employLinkMan.getText().toString();
     }
     public void pushEm(){
         new Thread(new Runnable() {
@@ -123,7 +124,8 @@ public class CompileEmployActivity extends AppCompatActivity implements View.OnC
                         + "&required=" + required
                         + "&phone=" + phone
                         + "&registerPhone=" + registerPhone
-                        +"&type="+"1";
+                        + "&linkman" + linkman
+                        +"&type="+"2";
                 HttpUtil.sedHttpRequest(address);
             }
         }).start();

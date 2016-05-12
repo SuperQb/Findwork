@@ -1,11 +1,9 @@
-package com.qb.findwork.data;
+package com.cn.entities;
 
-/**
- * Created by QB on 2016/4/25.
- */
+
 public class Work {
 
-    private String id;
+    //private int id;
     private String position;
     private String pay;
     private String sex;
@@ -17,38 +15,53 @@ public class Work {
     private String phone;
     private String type;
     private String linkman;
+//    public int getId() {
+//        return id;
+//    }
 
-    public Work(String id, String position, String pay, String sex, String location, String intrduce, String content, String requid, String callphone, String phone, String type,String linkman) {
-        this.id = id;
-        this.position = position;
-        this.pay = pay;
-        this.sex = sex;
-        this.location = location;
-        this.intrduce = intrduce;
-        this.content = content;
-        this.requid = requid;
-        this.callphone = callphone;
-        this.phone = phone;
-        this.type = type;
-        this.linkman=linkman;
-    }
+public String getLinkman() {
+		return linkman;
+	}
 
-    public String getLinkman() {
-        return linkman;
-    }
+	public void setLinkman(String linkman) {
+		this.linkman = linkman;
+	}
 
-    public void setLinkman(String linkman) {
-        this.linkman = linkman;
-    }
+	//    public Work(int id, String position, String pay, String sex, String location, String intrduce, String content,
+//			String requid, String callphone, String phone, String type) {
+//		super();
+//		this.id = id;
+//		this.position = position;
+//		this.pay = pay;
+//		this.sex = sex;
+//		this.location = location;
+//		this.intrduce = intrduce;
+//		this.content = content;
+//		this.requid = requid;
+//		this.callphone = callphone;
+//		this.phone = phone;
+//		this.type = type;
+//	}
+    public Work( String position, String pay, String sex, String location, String intrduce, String content,
+			String requid, String callphone, String phone, String type ,String linkman) {
+		super();
+		
+		this.position = position;
+		this.pay = pay;
+		this.sex = sex;
+		this.location = location;
+		this.intrduce = intrduce;
+		this.content = content;
+		this.requid = requid;
+		this.callphone = callphone;
+		this.phone = phone;
+		this.type = type;
+		this.linkman=linkman;
+	}
 
-    public String getId() {
-
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+//	public void setId(int id) {
+//        this.id = id;
+//    }
 
     public String getPosition() {
         return position;
@@ -130,6 +143,6 @@ public class Work {
         this.type = type;
     }
 
-
+   
 
 }

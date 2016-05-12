@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="?attr/actionBarSize"
-            android:text="设置"
+            android:text="@string/seting_tile"
             android:gravity="center"
             android:textColor="#ffffff"
             android:textSize="25sp"
@@ -46,7 +46,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="网络"
+            android:text="@string/seting_net"
             android:layout_centerVertical="true"
             android:layout_marginLeft="53dp"
             android:textSize="15sp"
@@ -84,7 +84,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="缓存"
+            android:text="@string/seting_cash"
             android:layout_centerVertical="true"
             android:layout_marginLeft="53dp"
             android:textSize="15sp"
@@ -133,7 +133,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="语言"
+            android:text="@string/seting_language"
             android:layout_centerVertical="true"
             android:layout_marginLeft="53dp"
             android:textSize="15sp"

@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="?attr/actionBarSize"
-            android:text="个人信息"
+            android:text="@string/per_tile"
             android:gravity="center"
             android:textColor="#ffffff"
             android:textSize="25sp"
@@ -30,7 +30,7 @@
             android:id="@+id/person_save"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:text="完成"
+            android:text="@string/per_save"
             android:gravity="center"
             android:textColor="#ffffff"
             android:textSize="20sp"

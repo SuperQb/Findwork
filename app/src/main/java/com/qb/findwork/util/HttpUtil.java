@@ -7,12 +7,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-/**
- * Created by QB on 2016/4/23.
- */
+
 public class HttpUtil {
 
-    public static String ipUrl="http://192.168.0.4:8080/Test/";
+    public static String ipUrl="http://192.168.139.1:8080/Test/";
     public static HttpURLConnection connection ;
 
     public  static HttpURLConnection sedHttpRequest(String address){

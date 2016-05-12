@@ -192,6 +192,7 @@
     <string name="com_em_pay">理想薪资</string>
     <string name="com_em_sex">性别</string>
     <string name="com_em_location">理想工作地点</string>
+    <string name="com_em_linkman">联系人</string>
     <string name="com_em_phone">联系电话</string>
     <string name="com_em_tx_introduce">介绍：</string>
     <string name="com_em_introduce">自我介绍</string>
@@ -208,6 +209,7 @@
     <string name="com_work_pay">薪资</string>
     <string name="com_work_sex">性别要求</string>
     <string name="com_work_location">工作地点</string>
+    <string name="com_work_linkman">联系人</string>
     <string name="com_work_phone">联系电话</string>
     <string name="com_work_tx_introduce">介绍：</string>
     <string name="com_work_introduce">公司介绍</string>
@@ -230,5 +232,43 @@
     <string name="lan_login_key">密码</string>
     <string name="lan_login_login">登录</string>
     <string name="lan_login_skip">随便看看</string>
+    <!--nameActivity-->
+    <string name="per_name_tile">昵称</string>
+    <string name="per_name_save">完成</string>
+    <string name="per_name">昵称</string>
+    <!--personActivity-->
+    <string name="per_tile">个人信息</string>
+    <string name="per_save">完成</string>
+    <!--phoneActivity-->
+    <string name="per_phone_tile">电话</string>
+    <string name="per_phone_save">完成</string>
+    <string name="per_phone">电话</string>
+    <!--registerActivity-->
+    <string name="register_tile">注册</string>
+    <string name="register_login">登录</string>
+    <string name="register_phone">电话</string>
+    <string name="register_code">验证码</string>
+    <string name="register_get_code">获取验证码</string>
+    <string name="register_key">密码</string>
+    <string name="register_key_two">密码</string>
+    <string name="register_singin">注册</string>
+    <!--setingActivity-->
+    <string name="seting_tile">设置</string>
+    <string name="seting_net">网络</string>
+    <string name="seting_cash">缓存</string>
+    <string name="seting_language">语言</string>
+
+    <!--sexActivity-->
+    <string name="sex_tile">性别</string>
+    <string name="sex_save">完成</string>
+
+
+
+
+
+
+
+
+
 
 </resources>

@@ -23,10 +23,11 @@ public class CompileWorkActivity extends AppCompatActivity implements View.OnCli
     private EditText workContent;
     private EditText workRequired;
     private EditText workPhone;
+    private EditText workLinkMan;
 
     private ImageView workBack;
     private TextView workpush;
-    private String position, pay, sex, location, introduce, content, required, phone;
+    private String position, pay, sex, location, introduce, content, required, phone,linkman;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class CompileWorkActivity extends AppCompatActivity implements View.OnCli
         workContent = (EditText) findViewById(R.id.compile_tv_work_more_content);
         workRequired = (EditText) findViewById(R.id.compile_tv_work_more_required);
         workPhone = (EditText) findViewById(R.id.compile_work_phone);
+        workLinkMan= (EditText) findViewById(R.id.compile_work_linkman);
 
         workBack.setOnClickListener(this);
         workpush.setOnClickListener(this);
@@ -75,13 +77,14 @@ public class CompileWorkActivity extends AppCompatActivity implements View.OnCli
         Log.i("workLocation", workLocation.getText().toString());
         Log.i("workRequired", workRequired.getText().toString());
         Log.i("workPhone", workPhone.getText().toString());
+        Log.i("workLinkMan", workLinkMan.getText().toString());
         pushWork();
     }
 
     public boolean idAllIn() {
         getText();
 
-        if (position.isEmpty() || pay.isEmpty() || sex.isEmpty() || location.isEmpty() || position.isEmpty() || content.isEmpty() || required.isEmpty() || phone.isEmpty()) {
+        if (position.isEmpty() || pay.isEmpty() || sex.isEmpty() || location.isEmpty() || position.isEmpty() || content.isEmpty() || required.isEmpty() || phone.isEmpty()||linkman.isEmpty()) {
             Log.i("all", "请填写完整");
             return false;
 
@@ -100,6 +103,7 @@ public class CompileWorkActivity extends AppCompatActivity implements View.OnCli
         content = workContent.getText().toString();
         required = workRequired.getText().toString();
         phone = workPhone.getText().toString();
+        linkman=workLinkMan.getText().toString();
     }
 
     public void pushWork() {
@@ -117,6 +121,7 @@ public class CompileWorkActivity extends AppCompatActivity implements View.OnCli
                         + "&required=" + required
                         + "&phone=" + phone
                         + "&registerPhone=" + registerPhone
+                        + "&linkman" + linkman
                         +"&type="+"1";
                 HttpUtil.sedHttpRequest(address);
             }

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -21,6 +22,8 @@ import com.qb.findwork.data.UserLogin;
 import com.qb.findwork.util.HttpGetString;
 import com.qb.findwork.util.HttpUtil;
 
+import junit.framework.Test;
+
 import java.net.HttpURLConnection;
 import java.util.List;
 
@@ -29,6 +32,7 @@ import cn.smssdk.SMSSDK;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private TextView login;
     private ImageView register_back;
     private Button button_register;
     private EditText activity_register_phone;
@@ -60,9 +64,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         activity_register_password_two = (EditText) findViewById(R.id.activity_register_password_two);
         activity_per_code = (EditText) findViewById(R.id.activity_per_code);
         get_code = (Button) findViewById(R.id.get_code);
+        login= (TextView) findViewById(R.id.login);
         register_back.setOnClickListener(this);
         button_register.setOnClickListener(this);
         get_code.setOnClickListener(this);
+        login.setOnClickListener(this);
     }
 
     @Override
@@ -80,6 +86,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     new LAsync().execute(userpass, username);
                     //
                 }
+                break;
+            case R.id.login:
+                finish();
                 break;
             default:
                 break;

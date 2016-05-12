@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.qb.findwork.R;
+import com.qb.findwork.adapter.ManRecyclerViewAdapter;
 import com.qb.findwork.adapter.RecyclerViewAdapter;
+import com.qb.findwork.data.ListData;
 import com.qb.findwork.data.Workdata;
 
 import java.util.ArrayList;
@@ -21,7 +23,7 @@ import java.util.List;
 public class ManFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     private RecyclerView recyclerView;
     private List<Workdata> workdatas;
-    private RecyclerViewAdapter adapter;
+    private ManRecyclerViewAdapter adapter;
     private SwipeRefreshLayout mSwipeLayout;
 
     @Override
@@ -38,7 +40,7 @@ public class ManFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         View view=inflater.inflate(R.layout.fragment_man, container, false);
         recyclerView= (RecyclerView)view.findViewById(R.id.recyclerView_man);
         initPersonData();
-        adapter=new RecyclerViewAdapter(workdatas,getActivity());
+        adapter=new ManRecyclerViewAdapter(ListData.workList,getActivity());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);

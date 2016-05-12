@@ -25,19 +25,19 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:text="注册"
+            android:text="@string/register_tile"
             android:textColor="#ffffff"
             android:textSize="25sp" />
 
         <TextView
-            android:id="@+id/register"
+            android:id="@+id/login"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
             android:gravity="center"
-            android:text="登录"
+            android:text="@string/register_login"
             android:textColor="#ffffff"
             android:textSize="20sp" />
     </RelativeLayout>
@@ -72,7 +72,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/activity_register_phone_image"
             android:background="#ffffff"
-            android:hint="手机号"
+            android:hint="@string/register_phone"
             android:maxLines="1"
             android:singleLine="true"
             android:textSize="25sp" />
@@ -116,7 +116,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/activity_register_code_image"
             android:background="#ffffff"
-            android:hint="验证码"
+            android:hint="@string/register_code"
             android:maxLines="1"
             android:singleLine="true"
             android:textSize="25sp" />
@@ -127,7 +127,7 @@
             android:layout_below="@+id/view3"
             android:layout_alignRight="@+id/view3"
             android:layout_alignEnd="@+id/view3"
-            android:text="获取验证码"/>
+            android:text="@string/register_get_code"/>
 
         <View
             android:layout_width="match_parent"
@@ -169,7 +169,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/activity_register_password_image"
             android:background="#ffffff"
-            android:hint="密码"
+            android:hint="@string/register_key"
             android:maxLines="1"
             android:singleLine="true"
             android:textSize="25sp" />
@@ -212,7 +212,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/activity_register_password_two_image"
             android:background="#ffffff"
-            android:hint="密码"
+            android:hint="@string/register_key_two"
             android:maxLines="1"
             android:singleLine="true"
             android:textSize="25sp" />
@@ -230,6 +230,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="注册"
+        android:text="@string/register_singin"
         android:textStyle="bold" />
 </LinearLayout>

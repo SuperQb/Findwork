@@ -2,35 +2,31 @@ package com.qb.findwork.adapter;
 
 
 import android.content.Context;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.qb.findwork.R;
 import com.qb.findwork.activity.LoginActivity;
 import com.qb.findwork.activity.WorkActivity;
 import com.qb.findwork.data.Work;
-import com.qb.findwork.data.Workdata;
 
 import java.util.List;
 
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.NewsViewHolder> {
+public class ManRecyclerViewAdapter extends RecyclerView.Adapter<ManRecyclerViewAdapter.NewsViewHolder> {
 
-
-    public static String NUMBER="number";
     private List<Work> workdatas;
     private Context context;
 
-    public RecyclerViewAdapter(List<Work> workdatas, Context context) {
+    public ManRecyclerViewAdapter(List<Work> workdatas, Context context) {
         this.workdatas = workdatas;
         this.context = context;
     }
@@ -67,35 +63,36 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(NewsViewHolder personViewHolder, int i) {
         final int j = i;
 
-        personViewHolder.work_photo.setImageResource(R.drawable.ulinxinru);
-        personViewHolder.work_position.setText(workdatas.get(i).getPosition());
-        personViewHolder.work_linkman.setText(workdatas.get(i).getLinkman());
-        personViewHolder.work_pay.setText(workdatas.get(i).getPay());
+        String type=workdatas.get(i).getType();
+        if(type.equals("2")) {
+            personViewHolder.work_photo.setImageResource(R.drawable.ulinxinru);
+            personViewHolder.work_position.setText(workdatas.get(i).getPosition());
+            personViewHolder.work_linkman.setText(workdatas.get(i).getLinkman());
+            personViewHolder.work_pay.setText(workdatas.get(i).getPay());
 
-        personViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            personViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
 
-                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
-                boolean isLogin = pref.getBoolean("remember_password", false);
-                Intent intent;
-                if (isLogin == true) {
-                    intent = new Intent(context, WorkActivity.class);
-                    intent.putExtra(NUMBER,j+"");
+                    SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+                    boolean isLogin = pref.getBoolean("remember_password", false);
+                    Intent intent;
+                    if (isLogin == true) {
+                        intent = new Intent(context, WorkActivity.class);
+                        intent.putExtra(RecyclerViewAdapter.NUMBER, j + "");
 
+                    } else {
+
+                        intent = new Intent(context, LoginActivity.class);
+
+                    }//intent.putExtra("News",newses.get(j));
+                    context.startActivity(intent);
+                    //Log.i("点击",j+"");
                 }
-                else{
+            });
 
-                    intent = new Intent(context, LoginActivity.class);
-
-                }//intent.putExtra("News",newses.get(j));
-                context.startActivity(intent);
-                //Log.i("点击",j+"");
-            }
-        });
-
-
+        }
     }
 
     @Override

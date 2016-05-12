@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 
 import com.qb.findwork.R;
 import com.qb.findwork.adapter.RecyclerViewAdapter;
+import com.qb.findwork.adapter.WorkRecyclerViewAdapter;
+import com.qb.findwork.data.ListData;
 import com.qb.findwork.data.Workdata;
 
 import java.util.ArrayList;
@@ -21,7 +23,7 @@ import java.util.List;
 public class WorkFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     private RecyclerView recyclerView;
     private List<Workdata> workdatas;
-    private RecyclerViewAdapter adapter;
+    private WorkRecyclerViewAdapter adapter;
     private SwipeRefreshLayout mSwipeLayout;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,7 @@ public class WorkFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         View view=inflater.inflate(R.layout.fragment_work, container, false);
         recyclerView= (RecyclerView)view.findViewById(R.id.recyclerView_work);
         initPersonData();
-        adapter=new RecyclerViewAdapter(workdatas,getActivity());
+        adapter=new WorkRecyclerViewAdapter(ListData.workList,getActivity());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);

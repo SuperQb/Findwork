@@ -186,7 +186,38 @@
                     android:layout_marginLeft="45dp"
                     android:background="@color/line_color" />
             </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_employ_linkman"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/item_selector">
 
+                <ImageView
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/ic_account_circle_black_24dp" />
+
+                <EditText
+                    android:id="@+id/compile_employ_linkman"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="53dp"
+                    android:background="#ffffff"
+                    android:hint="@string/com_em_linkman"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="45dp"
+                    android:background="@color/line_color" />
+            </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/Relat_phone"
                 android:layout_width="match_parent"

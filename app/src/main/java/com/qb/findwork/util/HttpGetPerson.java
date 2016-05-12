@@ -1,6 +1,7 @@
 package com.qb.findwork.util;
 
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -16,8 +17,8 @@ import java.util.List;
 
 public class HttpGetPerson {
     private static SharedPreferences pref;
-    public static void getPerson() {
-        pref = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext());
+    public static void getPerson(Context context) {
+        pref = PreferenceManager.getDefaultSharedPreferences(context);
         new Thread(new Runnable() {
             @Override
             public void run() {

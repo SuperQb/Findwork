@@ -6,9 +6,7 @@ import android.preference.PreferenceManager;
 
 import com.qb.findwork.MyApplication;
 
-/**
- * Created by Administrator on 2016/4/29.
- */
+
 public class ShareDate {
 
     private static SharedPreferences pref;
