@@ -262,7 +262,8 @@
     <string name="sex_tile">性别</string>
     <string name="sex_save">完成</string>
 
-
+    <!--workActivity-->
+    <string name="linkman_button">打电话给他/她</string>
 
 
 

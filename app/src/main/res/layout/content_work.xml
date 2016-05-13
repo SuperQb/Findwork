@@ -11,7 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#ffffffff">
 
         <RelativeLayout
             android:id="@+id/Relat_name"
@@ -162,7 +163,8 @@
                 android:layout_toEndOf="@+id/tv_work_more_title_introduce"
                 android:layout_toRightOf="@+id/tv_work_more_title_introduce"
                 android:text="总体来说， NestedScroll 初看起来有些让人费解，但是真的理解以后，就发现这种设计的优秀之处。把滑动整体封装起来，通过 Helper 来实现 Child 和 Parent 之间的连接和交互。通过接口来回调，实现了 Child 和 Parent 的逻辑独立。"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:lines="6"/>
 
             <View
                 android:layout_width="match_parent"
@@ -197,7 +199,8 @@
                 android:layout_toEndOf="@+id/tv_work_more_title_contente"
                 android:layout_toRightOf="@+id/tv_work_more_title_contente"
                 android:text="总体来说， NestedScroll 初看起来有些让人费解，但是真的理解以后，就发现这种设计的优秀之处。把滑动整体封装起来，通过 Helper 来实现 Child 和 Parent 之间的连接和交互。通过接口来回调，实现了 Child 和 Parent 的逻辑独立。"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:lines="6"/>
 
             <View
                 android:layout_width="match_parent"
@@ -232,7 +235,8 @@
                 android:layout_toEndOf="@+id/tv_work_more_title_required"
                 android:layout_toRightOf="@+id/tv_work_more_title_required"
                 android:text="总体来说， NestedScroll 初看起来有些让人费解，但是真的理解以后，就发现这种设计的优秀之处。把滑动整体封装起来，通过 Helper 来实现 Child 和 Parent 之间的连接和交互。通过接口来回调，实现了 Child 和 Parent 的逻辑独立。"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:lines="6"/>
 
             <View
                 android:layout_width="match_parent"
@@ -242,6 +246,15 @@
                 android:background="@color/line_color" />
         </RelativeLayout>
 
+        <Button
+            android:id="@+id/linkman_button"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/linkman_button"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

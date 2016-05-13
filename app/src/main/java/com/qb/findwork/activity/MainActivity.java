@@ -112,14 +112,13 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-                isLogin = pref.getBoolean("remember_password", false);
+                isLogin = pref.getBoolean("islogin", false);
                 Intent intent = null;
                 if (isLogin) {
-                    intent= new Intent(MainActivity.this, CompileWorkActivity.class);
+                    intent = new Intent(MainActivity.this, CompileWorkActivity.class);
 
-                }
-                else{
-                    intent= new Intent(MainActivity.this,LoginActivity.class);
+                } else {
+                    intent = new Intent(MainActivity.this, LoginActivity.class);
                 }
                 startActivity(intent);
                 floatingActionsMenu.toggle();
@@ -128,10 +127,13 @@ public class MainActivity extends AppCompatActivity
         actionA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isLogin = pref.getBoolean("remember_password", false);
+                isLogin = pref.getBoolean("islogin", false);
                 Intent intent = null;
-
-                 intent = new Intent(MainActivity.this, CompileEmployActivity.class);
+                if (isLogin) {
+                    intent = new Intent(MainActivity.this, CompileEmployActivity.class);
+                } else {
+                    intent = new Intent(MainActivity.this, LoginActivity.class);
+                }
                 startActivity(intent);
                 floatingActionsMenu.toggle();
             }
@@ -170,7 +172,7 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        isLogin = pref.getBoolean("remember_password", false);
+        isLogin = pref.getBoolean("islogin", false);
         transaction = fragmentManager.beginTransaction();
         int id = item.getItemId();
         if (id == R.id.nav_main) {
@@ -190,7 +192,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_setting) {
 
             Intent intent;
-            if (isLogin == true) {
+            if (isLogin) {
                 Log.i("islogin", isLogin + "");
                 intent = new Intent(MainActivity.this, SettingsActivity.class);
             } else {

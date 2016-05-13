@@ -1,24 +1,28 @@
 package com.qb.findwork.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.qb.findwork.R;
 import com.qb.findwork.adapter.RecyclerViewAdapter;
 import com.qb.findwork.data.ListData;
 
-public class WorkActivity extends AppCompatActivity {
+public class WorkActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Toolbar toolbar;
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private FloatingActionButton fab;
     private TextView tv_work_name, tv_work_money, tv_work_sex, tv_work_location, tv_work_more_introduce, tv_work_more_content, tv_work_more_required;
+    private Button linkman_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +63,16 @@ public class WorkActivity extends AppCompatActivity {
         tv_work_more_introduce = (TextView) findViewById(R.id.tv_work_more_introduce);
         tv_work_more_content = (TextView) findViewById(R.id.tv_work_more_content);
         tv_work_more_required = (TextView) findViewById(R.id.tv_work_more_required);
+        linkman_button = (Button) findViewById(R.id.linkman_button);
+        linkman_button.setOnClickListener(this);
         setText();
 
     }
 
     private void setText() {
-        Bundle bundle = new Bundle();
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
         int number = Integer.parseInt(bundle.getString(RecyclerViewAdapter.NUMBER));
         tv_work_name.setText(ListData.workList.get(number).getPosition());
         tv_work_money.setText(ListData.workList.get(number).getPay());
@@ -76,4 +84,13 @@ public class WorkActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.linkman_button:
+                break;
+            default:
+                break;
+        }
+    }
 }

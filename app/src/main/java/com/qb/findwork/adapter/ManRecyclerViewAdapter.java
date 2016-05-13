@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,6 +82,7 @@ public class ManRecyclerViewAdapter extends RecyclerView.Adapter<ManRecyclerView
                     if (isLogin == true) {
                         intent = new Intent(context, WorkActivity.class);
                         intent.putExtra(RecyclerViewAdapter.NUMBER, j + "");
+                        Log.i("test",j+"");
 
                     } else {
 
