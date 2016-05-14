@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
@@ -22,8 +23,10 @@ import android.widget.TextView;
 
 import com.qb.findwork.R;
 import com.qb.findwork.util.DataClearManager;
+import com.qb.findwork.util.GetImageStream;
 import com.qb.findwork.util.HttpGetString;
 import com.qb.findwork.util.HttpUtil;
+import com.qb.findwork.util.SavePic;
 import com.qb.findwork.util.ShareDate;
 import com.qb.findwork.view.CircleView;
 import com.qb.findwork.view.WheelView;
@@ -43,12 +46,11 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
     private TextView per_name, per_sex, per_age, per_phone;
     private ImageView back;
 
-
     private SharedPreferences pref;
     private String name, age, sex, phone;
     private TextView perSave;
     private CircleView per_photo;
-
+    private String registerPhone;
 
     public static final int TAKE_PHOTO = 1;
 
@@ -84,7 +86,10 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
         perSave.setOnClickListener(this);
         per_photo.setOnClickListener(this);
         setPerson();
+        new LAsync().execute();
     }
+
+
 
     public void setPerson() {
 
@@ -194,7 +199,7 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String registerPhone = ShareDate.getString("phone",PersonActivity.this);
+                 registerPhone = ShareDate.getString("phone",PersonActivity.this);
                 String address = HttpUtil.ipUrl + "SavePerson?registerPhone=" + registerPhone
                         + "&phone=" + phone
                         + "&name=" + name
@@ -247,5 +252,45 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
             default:
                 break;
         }
+    }
+
+    private class LAsync extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+           // String filePath = "http://e.hiphotos.baidu.com/image/pic/item/2fdda3cc7cd98d10b510fdea233fb80e7aec9021.jpg";
+            String filePath = pref.getString("personIcon", "NO");
+            try {
+                Bitmap mBitmap = BitmapFactory.decodeStream(GetImageStream.getImageStream(filePath));
+                //String FileName = params[0];
+                String FileName = registerPhone+".jpg";
+                SavePic.saveFile(mBitmap, FileName);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+            return "ok";
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+
+
+            String img = SavePic.ALBUM_PATH+registerPhone+".jpg";
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = 2;
+            Bitmap sdBitmap = BitmapFactory.decodeFile(img, options);
+            per_photo.setImageBitmap(sdBitmap);
+
+        }
+
     }
 }

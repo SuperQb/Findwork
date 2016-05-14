@@ -115,6 +115,7 @@ public class CompileEmployActivity extends AppCompatActivity implements View.OnC
             @Override
             public void run() {
                 String registerPhone = ShareDate.getString("phone",CompileEmployActivity.this);
+                String pic = ShareDate.getString("personIcon",CompileEmployActivity.this);
                 String address = HttpUtil.ipUrl + "SaveWork?position=" + position
                         + "&pay=" + pay
                         + "&sex=" + sex
@@ -125,6 +126,7 @@ public class CompileEmployActivity extends AppCompatActivity implements View.OnC
                         + "&phone=" + phone
                         + "&registerPhone=" + registerPhone
                         + "&linkman" + linkman
+                        +"&pic"+pic
                         +"&type="+"2";
                 HttpUtil.sedHttpRequest(address);
             }

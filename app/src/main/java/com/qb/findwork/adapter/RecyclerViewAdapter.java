@@ -5,28 +5,40 @@ import android.content.Context;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.qb.findwork.R;
 import com.qb.findwork.activity.LoginActivity;
 import com.qb.findwork.activity.WorkActivity;
 import com.qb.findwork.data.Work;
 import com.qb.findwork.data.Workdata;
+import com.qb.findwork.util.GetImageStream;
+import com.qb.findwork.util.SavePic;
 
+import java.io.IOException;
 import java.util.List;
 
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.NewsViewHolder> {
 
 
-    public static String NUMBER="number";
+    public static String NUMBER = "number";
+    public static String ID = "id";
+    public static String REGISTERPHONE = "registerPhone";
+    public static String WORKTYPE="worktype";
+    public static String LISTTYPE="all";
     private List<Work> workdatas;
     private Context context;
 
@@ -49,7 +61,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             work_photo = (ImageView) itemView.findViewById(R.id.work_photo);
             work_position = (TextView) itemView.findViewById(R.id.work_position);
             work_linkman = (TextView) itemView.findViewById(R.id.work_linkman);
-            work_pay= (TextView) itemView.findViewById(R.id.work_pay);
+            work_pay = (TextView) itemView.findViewById(R.id.work_pay);
 
         }
 
@@ -66,8 +78,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(NewsViewHolder personViewHolder, int i) {
         final int j = i;
-
         personViewHolder.work_photo.setImageResource(R.drawable.ulinxinru);
+        LAsync task = new LAsync(personViewHolder.work_photo);
+        task.execute(i);
         personViewHolder.work_position.setText(workdatas.get(i).getPosition());
         personViewHolder.work_linkman.setText(workdatas.get(i).getLinkman());
         personViewHolder.work_pay.setText(workdatas.get(i).getPay());
@@ -78,14 +91,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
                 SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
-                boolean isLogin = pref.getBoolean("remember_password", false);
+                boolean isLogin = pref.getBoolean("islogin", false);
+
                 Intent intent;
                 if (isLogin == true) {
+                    String Id = workdatas.get(j).getId();
+                    String registerPhone = workdatas.get(j).getPhone();
                     intent = new Intent(context, WorkActivity.class);
-                    intent.putExtra(NUMBER,j+"");
+                    intent.putExtra(NUMBER, j + "");
+                    intent.putExtra(ID, Id);
+                    intent.putExtra(REGISTERPHONE, registerPhone);
+                    intent.putExtra(WORKTYPE, LISTTYPE);
 
-                }
-                else{
+                } else {
 
                     intent = new Intent(context, LoginActivity.class);
 
@@ -95,11 +113,56 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             }
         });
 
-
     }
 
     @Override
     public int getItemCount() {
         return workdatas.size();
+    }
+
+    private class LAsync extends AsyncTask<Integer, String, String> {
+
+        private ImageView mImageView;
+        String number;
+        String registerPhone;
+
+        public LAsync(ImageView imageView) {
+            mImageView = imageView;
+        }
+
+        @Override
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected String doInBackground(Integer... params) {
+            // String filePath = "http://e.hiphotos.baidu.com/image/pic/item/2fdda3cc7cd98d10b510fdea233fb80e7aec9021.jpg";
+            String filePath = workdatas.get(params[0]).getPic();
+            Log.i("test", filePath);
+            number = workdatas.get(params[0]).getId();
+            registerPhone = workdatas.get(params[0]).getPhone();
+            try {
+                Bitmap mBitmap = BitmapFactory.decodeStream(GetImageStream.getImageStream(filePath));
+                //String FileName = params[0];
+                String FileName = number + registerPhone + ".jpg";
+                SavePic.saveFile(mBitmap, FileName);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "ok";
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            String img = SavePic.ALBUM_PATH + number + registerPhone + ".jpg";
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = 2;
+            Bitmap sdBitmap = BitmapFactory.decodeFile(img, options);
+            mImageView.setImageBitmap(sdBitmap);
+        }
+
     }
 }

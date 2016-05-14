@@ -26,7 +26,7 @@ public class HttpGetPerson {
                 //向服务器发送注册时候的手机号，服务器进行查询，返回个人详细资料
 
                 String phone = pref.getString("phone", "NO");
-                String address = HttpUtil.ipUrl+"Testt2?registerPhone="+phone;
+                String address = HttpUtil.ipUrl+"Getperson?registerPhone="+phone;
                 HttpURLConnection connection = HttpUtil.sedHttpRequest(address);
                 String jsonData = HttpGetString.HttpgetString(connection);
                 Log.i("jsonData", jsonData);
@@ -46,6 +46,7 @@ public class HttpGetPerson {
             editor.putString("personSex",  person.getSex());
             editor.putString("personAge", person.getAge());
             editor.putString("personPhone", person.getPhone());
+            editor.putString("personIcon",person.getIcon());
             editor.commit();
 
         }

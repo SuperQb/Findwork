@@ -36,7 +36,7 @@ public class HttpGetWork {
         Gson gson = new Gson();
         ListData.workList = gson.fromJson(jsonData, new TypeToken<List<Work>>() {
         }.getType());
-
+        ListData.getWork();
 //        for (Work work : workList) {
 //            //存入数据库
 //

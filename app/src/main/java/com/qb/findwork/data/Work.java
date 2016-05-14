@@ -17,8 +17,9 @@ public class Work {
     private String phone;
     private String type;
     private String linkman;
+    private String pic;
 
-    public Work(String id, String position, String pay, String sex, String location, String intrduce, String content, String requid, String callphone, String phone, String type,String linkman) {
+    public Work(String id, String position, String pay, String sex, String location, String intrduce, String content, String requid, String callphone, String phone, String type,String linkman,String pic) {
         this.id = id;
         this.position = position;
         this.pay = pay;
@@ -31,6 +32,15 @@ public class Work {
         this.phone = phone;
         this.type = type;
         this.linkman=linkman;
+        this.pic=pic;
+    }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 
     public String getLinkman() {

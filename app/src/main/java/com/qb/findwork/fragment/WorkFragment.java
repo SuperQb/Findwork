@@ -39,8 +39,7 @@ public class WorkFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
         View view=inflater.inflate(R.layout.fragment_work, container, false);
         recyclerView= (RecyclerView)view.findViewById(R.id.recyclerView_work);
-        initPersonData();
-        adapter=new WorkRecyclerViewAdapter(ListData.workList,getActivity());
+        adapter=new WorkRecyclerViewAdapter(ListData.workWorkList,getActivity());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -49,14 +48,6 @@ public class WorkFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setColorSchemeResources(R.color.colorPrimary);
         return view;
-    }
-
-    private void initPersonData() {
-        workdatas =new ArrayList<>();
-        workdatas.add(new Workdata("给工作一","王先生",R.mipmap.ulinxinru));
-        workdatas.add(new Workdata("给工作二","王先生",R.mipmap.ulinxinru));
-        workdatas.add(new Workdata("给工作三","王先生",R.mipmap.ulinxinru));
-        workdatas.add(new Workdata("给工作四","王先生",R.mipmap.ulinxinru));
     }
 
     @Override

@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
         //获取个人资料数据
-        //HttpGetPerson.getPerson(MainActivity.this);
+       // HttpGetPerson.getPerson(MainActivity.this);
     }
 
     @Override

@@ -112,6 +112,7 @@ public class CompileWorkActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void run() {
                 String registerPhone = ShareDate.getString("phone",CompileWorkActivity.this);
+                String pic = ShareDate.getString("personIcon",CompileWorkActivity.this);
                 String address = HttpUtil.ipUrl + "SaveWork?position=" + position
                         + "&pay=" + pay
                         + "&sex=" + sex
@@ -122,6 +123,7 @@ public class CompileWorkActivity extends AppCompatActivity implements View.OnCli
                         + "&phone=" + phone
                         + "&registerPhone=" + registerPhone
                         + "&linkman" + linkman
+                        +"&pic"+pic
                         +"&type="+"1";
                 HttpUtil.sedHttpRequest(address);
             }

@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.qb.findwork.R;
+import com.qb.findwork.util.HttpGetPerson;
 import com.qb.findwork.util.HttpGetString;
 import com.qb.findwork.util.HttpUtil;
 
@@ -195,6 +196,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
                 if (jsonData.equals("OK"))
 
                 {
+                    HttpGetPerson.getPerson(LoginActivity.this);
                     editor = pref.edit();
                     editor.putBoolean("remember_password", true);
                     editor.putString("phone", phone);
