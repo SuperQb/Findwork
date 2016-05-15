@@ -45,6 +45,7 @@ public class PhoneActivity extends AppCompatActivity implements View.OnClickList
                 ShareDate.setString("personPhone", phone, PhoneActivity.this);
                 finish();
                 overridePendingTransition(R.anim.base_slide_remain, R.anim.base_slide_right_out);
+
                 break;
             default:
                 break;

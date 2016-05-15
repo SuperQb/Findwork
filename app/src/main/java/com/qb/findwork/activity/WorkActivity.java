@@ -31,9 +31,9 @@ public class WorkActivity extends AppCompatActivity implements View.OnClickListe
     private FloatingActionButton fab;
     private TextView tv_work_name, tv_work_money, tv_work_sex, tv_work_location, tv_work_more_introduce, tv_work_more_content, tv_work_more_required;
     private Button linkman_button;
-    private String Id,registerPhone;
+    private String Id, registerPhone;
     private ImageView backdrop;
-    private List<Work> typeWork=new ArrayList<>();
+    private List<Work> typeWork = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +75,7 @@ public class WorkActivity extends AppCompatActivity implements View.OnClickListe
         tv_work_more_content = (TextView) findViewById(R.id.tv_work_more_content);
         tv_work_more_required = (TextView) findViewById(R.id.tv_work_more_required);
         linkman_button = (Button) findViewById(R.id.linkman_button);
-        backdrop= (ImageView) findViewById(R.id.backdrop);
+        backdrop = (ImageView) findViewById(R.id.backdrop);
         linkman_button.setOnClickListener(this);
         setText();
 
@@ -86,18 +86,18 @@ public class WorkActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         int number = Integer.parseInt(bundle.getString(RecyclerViewAdapter.NUMBER));
-        Id=bundle.getString(RecyclerViewAdapter.ID);
-        registerPhone=bundle.getString(RecyclerViewAdapter.REGISTERPHONE);
+        Id = bundle.getString(RecyclerViewAdapter.ID);
+        registerPhone = bundle.getString(RecyclerViewAdapter.REGISTERPHONE);
 
-        String listType  =bundle.getString(RecyclerViewAdapter.WORKTYPE);
-        if(listType.equals("all")) {
+        String listType = bundle.getString(RecyclerViewAdapter.WORKTYPE);
+        if (listType.equals("all")) {
 
-            typeWork=ListData.workList;
-        }else if(listType.equals("work")) {
-            typeWork=ListData.workWorkList;
+            typeWork = ListData.workList;
+        } else if (listType.equals("work")) {
+            typeWork = ListData.workWorkList;
 
-        }else if(listType.equals("man")){
-            typeWork=ListData.mankWorkList;
+        } else if (listType.equals("man")) {
+            typeWork = ListData.mankWorkList;
         }
 
         tv_work_name.setText(typeWork.get(number).getPosition());
@@ -108,7 +108,7 @@ public class WorkActivity extends AppCompatActivity implements View.OnClickListe
         tv_work_more_content.setText(typeWork.get(number).getContent());
         tv_work_more_required.setText(typeWork.get(number).getRequid());
 
-        String img = SavePic.ALBUM_PATH+Id+registerPhone+".jpg";
+        String img = SavePic.ALBUM_PATH + Id + registerPhone + ".jpg";
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 2;
         Bitmap sdBitmap = BitmapFactory.decodeFile(img, options);
@@ -124,13 +124,5 @@ public class WorkActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
-    private void setFromWorkList(){
 
-    }
-    private void setFromWorkWorkList(){
-
-    }
-    private void setFromManWorkList(){
-
-    }
 }

@@ -22,10 +22,13 @@ import com.qb.findwork.activity.LoginActivity;
 import com.qb.findwork.activity.WorkActivity;
 import com.qb.findwork.data.Work;
 import com.qb.findwork.util.GetImageStream;
+import com.qb.findwork.util.NetIsWifi;
 import com.qb.findwork.util.SavePic;
+import com.qb.findwork.util.ShareDate;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.StringTokenizer;
 
 
 public class WorkRecyclerViewAdapter extends RecyclerView.Adapter<WorkRecyclerViewAdapter.NewsViewHolder> {
@@ -33,6 +36,7 @@ public class WorkRecyclerViewAdapter extends RecyclerView.Adapter<WorkRecyclerVi
     public static String LISTTYPE="work";
     private List<Work> workdatas;
     private Context context;
+    private String netType;
 
 
     public WorkRecyclerViewAdapter(List<Work> workdatas, Context context) {
@@ -73,8 +77,12 @@ public class WorkRecyclerViewAdapter extends RecyclerView.Adapter<WorkRecyclerVi
     public void onBindViewHolder(NewsViewHolder personViewHolder, int i) {
         final int j = i;
         personViewHolder.work_photo.setImageResource(R.drawable.ulinxinru);
-        LAsync task=new LAsync(personViewHolder.work_photo);
-        task.execute(i);
+        netType= ShareDate.getString(NetIsWifi.NETTYPE, context);
+
+        if (netType.equals(NetIsWifi.NETALL)||NetIsWifi.isWifiConnected(context)) {
+            LAsync task = new LAsync(personViewHolder.work_photo);
+            task.execute(i);
+        }
         String type=workdatas.get(i).getType();
         if(type.equals("1")) {
             personViewHolder.work_photo.setImageResource(R.drawable.ulinxinru);

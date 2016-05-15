@@ -264,11 +264,10 @@
 
     <!--workActivity-->
     <string name="linkman_button">打电话给他/她</string>
-
-
-
-
-
+    <!--netActivity-->
+    <string name="net_title">网络</string>
+    <string name="net_wifi">非WIFI环境不下载图片</string>
+    <string name="net_all">所有网络环境下载图片</string>
 
 
 

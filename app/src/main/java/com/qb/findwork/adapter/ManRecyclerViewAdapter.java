@@ -22,16 +22,19 @@ import com.qb.findwork.activity.LoginActivity;
 import com.qb.findwork.activity.WorkActivity;
 import com.qb.findwork.data.Work;
 import com.qb.findwork.util.GetImageStream;
+import com.qb.findwork.util.NetIsWifi;
 import com.qb.findwork.util.SavePic;
+import com.qb.findwork.util.ShareDate;
 
 import java.io.IOException;
 import java.util.List;
 
 
 public class ManRecyclerViewAdapter extends RecyclerView.Adapter<ManRecyclerViewAdapter.NewsViewHolder> {
-    public static String LISTTYPE="man";
+    public static String LISTTYPE = "man";
     private List<Work> workdatas;
     private Context context;
+    private String netType;
 
     public ManRecyclerViewAdapter(List<Work> workdatas, Context context) {
         this.workdatas = workdatas;
@@ -52,7 +55,7 @@ public class ManRecyclerViewAdapter extends RecyclerView.Adapter<ManRecyclerView
             work_photo = (ImageView) itemView.findViewById(R.id.work_photo);
             work_position = (TextView) itemView.findViewById(R.id.work_position);
             work_linkman = (TextView) itemView.findViewById(R.id.work_linkman);
-            work_pay= (TextView) itemView.findViewById(R.id.work_pay);
+            work_pay = (TextView) itemView.findViewById(R.id.work_pay);
 
         }
 
@@ -70,10 +73,14 @@ public class ManRecyclerViewAdapter extends RecyclerView.Adapter<ManRecyclerView
     public void onBindViewHolder(NewsViewHolder personViewHolder, int i) {
         final int j = i;
         personViewHolder.work_photo.setImageResource(R.drawable.ulinxinru);
-        LAsync task=new LAsync(personViewHolder.work_photo);
-        task.execute(i);
-        String type=workdatas.get(i).getType();
-        if(type.equals("2")) {
+        netType= ShareDate.getString(NetIsWifi.NETTYPE, context);
+
+        if (netType.equals(NetIsWifi.NETALL)||NetIsWifi.isWifiConnected(context)) {
+            LAsync task = new LAsync(personViewHolder.work_photo);
+            task.execute(i);
+        }
+        String type = workdatas.get(i).getType();
+        if (type.equals("2")) {
             personViewHolder.work_photo.setImageResource(R.drawable.ulinxinru);
             personViewHolder.work_position.setText(workdatas.get(i).getPosition());
             personViewHolder.work_linkman.setText(workdatas.get(i).getLinkman());
@@ -89,13 +96,13 @@ public class ManRecyclerViewAdapter extends RecyclerView.Adapter<ManRecyclerView
                     Intent intent;
                     if (isLogin == true) {
                         String Id = workdatas.get(j).getId();
-                        String registerPhone= workdatas.get(j).getPhone();
+                        String registerPhone = workdatas.get(j).getPhone();
                         intent = new Intent(context, WorkActivity.class);
                         intent.putExtra(RecyclerViewAdapter.NUMBER, j + "");
-                        intent.putExtra(RecyclerViewAdapter.ID,Id);
-                        intent.putExtra(RecyclerViewAdapter.REGISTERPHONE,registerPhone);
-                        intent.putExtra(RecyclerViewAdapter.WORKTYPE,LISTTYPE);
-                        Log.i("test",j+"");
+                        intent.putExtra(RecyclerViewAdapter.ID, Id);
+                        intent.putExtra(RecyclerViewAdapter.REGISTERPHONE, registerPhone);
+                        intent.putExtra(RecyclerViewAdapter.WORKTYPE, LISTTYPE);
+                        Log.i("test", j + "");
 
                     } else {
 
@@ -121,9 +128,10 @@ public class ManRecyclerViewAdapter extends RecyclerView.Adapter<ManRecyclerView
         String number;
         String registerPhone;
 
-        public LAsync(ImageView imageView){
+        public LAsync(ImageView imageView) {
             mImageView = imageView;
         }
+
         @Override
         protected void onPreExecute() {
 
@@ -133,13 +141,13 @@ public class ManRecyclerViewAdapter extends RecyclerView.Adapter<ManRecyclerView
         protected String doInBackground(Integer... params) {
             // String filePath = "http://e.hiphotos.baidu.com/image/pic/item/2fdda3cc7cd98d10b510fdea233fb80e7aec9021.jpg";
             String filePath = workdatas.get(params[0]).getPic();
-            Log.i("test",filePath);
+            Log.i("test", filePath);
             number = workdatas.get(params[0]).getId();
-            registerPhone= workdatas.get(params[0]).getPhone();
+            registerPhone = workdatas.get(params[0]).getPhone();
             try {
                 Bitmap mBitmap = BitmapFactory.decodeStream(GetImageStream.getImageStream(filePath));
                 //String FileName = params[0];
-                String FileName = number+registerPhone+".jpg";
+                String FileName = number + registerPhone + ".jpg";
                 SavePic.saveFile(mBitmap, FileName);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -155,7 +163,7 @@ public class ManRecyclerViewAdapter extends RecyclerView.Adapter<ManRecyclerView
         protected void onPostExecute(String s) {
 
 
-            String img = SavePic.ALBUM_PATH+number+registerPhone+".jpg";
+            String img = SavePic.ALBUM_PATH + number + registerPhone + ".jpg";
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inSampleSize = 2;
             Bitmap sdBitmap = BitmapFactory.decodeFile(img, options);

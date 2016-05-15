@@ -11,7 +11,7 @@ public class DataClearManager {
 
 
     //下载图片位置
-    private static final String imUrl = Environment.getExternalStorageDirectory().getAbsolutePath();
+    private static final String imUrl = Environment.getExternalStorageDirectory().getAbsolutePath()+"/download_test/";
             //+ "/yylove/image";
 
     /**

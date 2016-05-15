@@ -68,7 +68,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
                         new Thread(new Runnable() {
                             public void run() {
-                                DataClearManager.cleanSharedPreference(SettingsActivity.this);
+                                DataClearManager.cleanApplicationData(SettingsActivity.this);
                                 SettingsActivity.this.runOnUiThread(new Runnable() {
                                     public void run() {
                                         mMaterialDialog.dismiss();
@@ -117,7 +117,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     private void updateCacheView() {
 
 
-        String size = DataClearManager.getSharedSize(getApplication());
+        String size = DataClearManager.getApplicationDataSize(getApplication());
         if (size != null) {
             setting_cash_m.setText(String.format("%s M", size));
         } else {

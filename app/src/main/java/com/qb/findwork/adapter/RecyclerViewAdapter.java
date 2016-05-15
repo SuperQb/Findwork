@@ -25,9 +25,12 @@ import com.qb.findwork.activity.WorkActivity;
 import com.qb.findwork.data.Work;
 import com.qb.findwork.data.Workdata;
 import com.qb.findwork.util.GetImageStream;
+import com.qb.findwork.util.NetIsWifi;
 import com.qb.findwork.util.SavePic;
+import com.qb.findwork.util.ShareDate;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -37,10 +40,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public static String NUMBER = "number";
     public static String ID = "id";
     public static String REGISTERPHONE = "registerPhone";
-    public static String WORKTYPE="worktype";
-    public static String LISTTYPE="all";
+    public static String WORKTYPE = "worktype";
+    public static String LISTTYPE = "all";
     private List<Work> workdatas;
     private Context context;
+    private String netType;
 
     public RecyclerViewAdapter(List<Work> workdatas, Context context) {
         this.workdatas = workdatas;
@@ -79,8 +83,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(NewsViewHolder personViewHolder, int i) {
         final int j = i;
         personViewHolder.work_photo.setImageResource(R.drawable.ulinxinru);
-        LAsync task = new LAsync(personViewHolder.work_photo);
-        task.execute(i);
+        netType= ShareDate.getString(NetIsWifi.NETTYPE,context);
+
+        if (netType.equals(NetIsWifi.NETALL)||NetIsWifi.isWifiConnected(context)) {
+            LAsync task = new LAsync(personViewHolder.work_photo);
+            task.execute(i);
+        }
         personViewHolder.work_position.setText(workdatas.get(i).getPosition());
         personViewHolder.work_linkman.setText(workdatas.get(i).getLinkman());
         personViewHolder.work_pay.setText(workdatas.get(i).getPay());
