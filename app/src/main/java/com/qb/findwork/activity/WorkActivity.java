@@ -3,6 +3,7 @@ package com.qb.findwork.activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -34,6 +35,7 @@ public class WorkActivity extends AppCompatActivity implements View.OnClickListe
     private String Id, registerPhone;
     private ImageView backdrop;
     private List<Work> typeWork = new ArrayList<>();
+    private String phoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +110,7 @@ public class WorkActivity extends AppCompatActivity implements View.OnClickListe
         tv_work_more_content.setText(typeWork.get(number).getContent());
         tv_work_more_required.setText(typeWork.get(number).getRequid());
 
+        phoneNumber=typeWork.get(number).getCallphone();
         String img = SavePic.ALBUM_PATH + Id + registerPhone + ".jpg";
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 2;
@@ -119,10 +122,19 @@ public class WorkActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.linkman_button:
+                callPhone(phoneNumber);
                 break;
             default:
                 break;
         }
+    }
+    public  void callPhone(String phoneNumber){
+
+        Intent intent=new Intent();
+        intent.setAction(Intent.ACTION_CALL);
+        intent.setData(Uri.parse("tel:" + phoneNumber));
+        startActivity(intent);
+
     }
 
 }
