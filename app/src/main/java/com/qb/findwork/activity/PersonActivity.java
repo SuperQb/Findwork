@@ -199,6 +199,7 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
         new Thread(new Runnable() {
             @Override
             public void run() {
+
                  registerPhone = ShareDate.getString("phone",PersonActivity.this);
                 String address = HttpUtil.ipUrl + "SavePerson?registerPhone=" + registerPhone
                         + "&phone=" + phone

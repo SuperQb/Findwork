@@ -2,6 +2,8 @@ package com.qb.findwork.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentManager;
@@ -16,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -34,6 +37,7 @@ import com.qb.findwork.util.ChangeLanguage;
 import com.qb.findwork.util.HttpGetPerson;
 import com.qb.findwork.util.HttpGetString;
 import com.qb.findwork.util.HttpUtil;
+import com.qb.findwork.util.SavePic;
 import com.qb.findwork.util.ShareDate;
 
 import java.net.HttpURLConnection;
@@ -53,12 +57,15 @@ public class MainActivity extends AppCompatActivity
     private Toolbar toolbar;
     private boolean isLogin = false;
     private TextView header_name, header_phone;
+    private ImageView icon_imageView;
     //private SharedPreferences.Editor editor;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ChangeLanguage.getLanguage(MainActivity.this);
+        Log.i("test","create");
         setContentView(R.layout.activity_main);
         init();
         setSupportActionBar(toolbar);
@@ -76,6 +83,7 @@ public class MainActivity extends AppCompatActivity
         linearlayoutPerson = (LinearLayout) nv.findViewById(R.id.person);
         header_name = (TextView) nv.findViewById(R.id.header_name);
         header_phone = (TextView) nv.findViewById(R.id.header_phone);
+        icon_imageView= (ImageView) nv.findViewById(R.id.icon_imageView);
         setHeader();
         linearlayoutPerson.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,9 +195,11 @@ public class MainActivity extends AppCompatActivity
             ManFragment fragmentMan = new ManFragment();
             transaction.replace(R.id.container, fragmentMan);
             transaction.commit();
-        } else if (id == R.id.nav_like) {
-            //收藏
-        } else if (id == R.id.nav_setting) {
+        }
+//        else if (id == R.id.nav_like) {
+//            //收藏
+//        }
+        else if (id == R.id.nav_setting) {
 
             Intent intent;
             if (isLogin) {
@@ -222,19 +232,27 @@ public class MainActivity extends AppCompatActivity
         if (!phone.equals("") && name != null) {
             header_phone.setText(phone);
         }
+        String img = SavePic.ALBUM_PATH+"null.jpg";
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 2;
+        Bitmap sdBitmap = BitmapFactory.decodeFile(img, options);
+        icon_imageView.setImageBitmap(sdBitmap);
+
+
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        ChangeLanguage.getLanguage(MainActivity.this);
+
         setHeader();
-        Log.i("test", "onRestart");
     }
 
     @Override
     protected void onDestroy() {
+        Log.i("test", "maindestroy");
         super.onDestroy();
-        ActivityManagers.removeActivity(this);
+        //ActivityManagers.removeActivity(this);
     }
+
 }

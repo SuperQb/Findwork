@@ -106,7 +106,7 @@ public class WorkActivity extends AppCompatActivity implements View.OnClickListe
         tv_work_money.setText(typeWork.get(number).getPay());
         tv_work_sex.setText(typeWork.get(number).getSex());
         tv_work_location.setText(typeWork.get(number).getLocation());
-        tv_work_more_introduce.setText(typeWork.get(number).getContent());
+        tv_work_more_introduce.setText(typeWork.get(number).getIntrduce());
         tv_work_more_content.setText(typeWork.get(number).getContent());
         tv_work_more_required.setText(typeWork.get(number).getRequid());
 
@@ -133,6 +133,7 @@ public class WorkActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent=new Intent();
         intent.setAction(Intent.ACTION_CALL);
         intent.setData(Uri.parse("tel:" + phoneNumber));
+        Log.i("test",phoneNumber);
         startActivity(intent);
 
     }

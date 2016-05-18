@@ -20,6 +20,7 @@ import com.qb.findwork.data.UserLogin;
 import com.qb.findwork.data.Work;
 import com.qb.findwork.data.Workdata;
 import com.qb.findwork.util.HttpGetString;
+import com.qb.findwork.util.HttpGetWork;
 import com.qb.findwork.util.HttpUtil;
 
 import java.net.HttpURLConnection;
@@ -33,7 +34,23 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     private List<Work> workdatas;
     private RecyclerViewAdapter adapter;
     private SwipeRefreshLayout mSwipeLayout;
+    private static final int REFRESH_COMPLETE = 0X110;
 
+    private Handler mHandler = new Handler()
+    {
+        public void handleMessage(android.os.Message msg)
+        {
+            switch (msg.what)
+            {
+                case REFRESH_COMPLETE:
+
+                    adapter.notifyDataSetChanged();
+                    mSwipeLayout.setRefreshing(false);
+                    break;
+
+            }
+        };
+    };
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,12 +79,16 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
     @Override
     public void onRefresh() {
+        HttpGetWork.getWork();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+
+                adapter = new RecyclerViewAdapter(ListData.workList, getActivity());
+                recyclerView.setAdapter(adapter);
                 mSwipeLayout.setRefreshing(false);
             }
-        }, 5000);
+        }, 2000);
     }
 
 

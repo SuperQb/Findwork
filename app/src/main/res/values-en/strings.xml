@@ -266,7 +266,6 @@
     <string name="linkman_button">Call him/her</string>
     <!--netActivity-->
     <string name="net_title">network</string>
-    <string name="net_wifi">The WIFI don't download the pictures</string>
     <string name="net_all">Download the pictures</string>
 
 

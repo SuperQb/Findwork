@@ -12,8 +12,9 @@ import java.net.HttpURLConnection;
 public class HttpGetString {
     public static String HttpgetString(HttpURLConnection connection) {
         try {
+            String encoding = "UTF-8";
             InputStream in = connection.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in,encoding));
             StringBuilder response = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {

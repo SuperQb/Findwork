@@ -15,6 +15,7 @@ import com.qb.findwork.adapter.ManRecyclerViewAdapter;
 import com.qb.findwork.adapter.RecyclerViewAdapter;
 import com.qb.findwork.data.ListData;
 import com.qb.findwork.data.Workdata;
+import com.qb.findwork.util.HttpGetWork;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,11 +53,14 @@ public class ManFragment extends Fragment implements SwipeRefreshLayout.OnRefres
 
     @Override
     public void onRefresh() {
+        HttpGetWork.getWork();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                adapter = new ManRecyclerViewAdapter(ListData.mankWorkList, getActivity());
+                recyclerView.setAdapter(adapter);
                 mSwipeLayout.setRefreshing(false);
             }
-        }, 5000);
+        }, 2000);
     }
 }

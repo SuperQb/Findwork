@@ -24,7 +24,7 @@ import me.drakeet.materialdialog.MaterialDialog;
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView setting_back;
-    private RelativeLayout Relat_setting_cash, Relat_setting_language;
+    private RelativeLayout Relat_setting_cash, Relat_setting_language,Relat_setting_net;
     private TextView setting_cash_m;
     private Button logout_button;
 
@@ -43,11 +43,13 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         Relat_setting_cash = (RelativeLayout) findViewById(R.id.Relat_setting_cash);
         setting_cash_m = (TextView) findViewById(R.id.setting_cash_m);
         Relat_setting_language = (RelativeLayout) findViewById(R.id.Relat_setting_language);
+        Relat_setting_net= (RelativeLayout) findViewById(R.id.Relat_setting_net);
         updateCacheView();
         setting_back.setOnClickListener(this);
         logout_button.setOnClickListener(this);
         Relat_setting_cash.setOnClickListener(this);
         Relat_setting_language.setOnClickListener(this);
+        Relat_setting_net.setOnClickListener(this);
 
     }
 
@@ -91,9 +93,11 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 break;
 
 
-//            case R.id.Relat_setting_net:
-//
-//                break;
+            case R.id.Relat_setting_net:
+
+                Intent intentNet=new Intent(this,NetActivity.class);
+                startActivity(intentNet);
+                break;
 
             case R.id.Relat_setting_language:
                 Intent intentlan = new Intent(this, LanguageActivity.class);
