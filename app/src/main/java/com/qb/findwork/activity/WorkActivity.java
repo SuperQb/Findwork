@@ -42,7 +42,7 @@ public class WorkActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work);
         init();
-        collapsingToolbarLayout.setTitle("找工作");
+
 
 
     }
@@ -103,6 +103,7 @@ public class WorkActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         tv_work_name.setText(typeWork.get(number).getPosition());
+        collapsingToolbarLayout.setTitle(typeWork.get(number).getPosition());
         tv_work_money.setText(typeWork.get(number).getPay());
         tv_work_sex.setText(typeWork.get(number).getSex());
         tv_work_location.setText(typeWork.get(number).getLocation());
